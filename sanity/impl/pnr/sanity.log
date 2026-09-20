@@ -1,0 +1,31 @@
+Reading netlist file: "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\sanity\sanity\impl\gwsynthesis\sanity.vg"
+Parsing netlist file "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\sanity\sanity\impl\gwsynthesis\sanity.vg" completed
+Processing netlist completed
+Reading constraint file: "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\sanity\sanity\src\sanity.cst"
+Physical Constraint parsed completed
+Running placement......
+[10%] Placement Phase 0 completed
+[20%] Placement Phase 1 completed
+[30%] Placement Phase 2 completed
+WARN  (TA1132) :  'clk' was determined to be a clock but was not created.
+[50%] Placement Phase 3 completed
+Running routing......
+[60%] Routing Phase 0 completed
+[70%] Routing Phase 1 completed
+[80%] Routing Phase 2 completed
+WARN  (PR1014) : Generic routing resource will be used to clock signal 'clk_d' by the specified constraint. And then it may lead to the excessive delay or skew
+[90%] Routing Phase 3 completed
+Running timing analysis......
+[95%] Timing analysis completed
+Placement and routing completed
+Bitstream generation in progress......
+Bitstream generation completed
+Running power analysis......
+[100%] Power analysis completed
+Generate file "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\sanity\sanity\impl\pnr\sanity.power.html" completed
+Generate file "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\sanity\sanity\impl\pnr\sanity.pin.html" completed
+Generate file "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\sanity\sanity\impl\pnr\sanity.rpt.html" completed
+Generate file "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\sanity\sanity\impl\pnr\sanity.rpt.txt" completed
+Generate file "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\sanity\sanity\impl\pnr\sanity.tr.html" completed
+Tue Sep  8 14:01:33 2026
+
