@@ -1,0 +1,9 @@
+{
+  "model_sha256": "646c74db6b998f129a5a3342f33c98058984b996f06ba174cc4bfe4340ae4780",
+  "vectors_sha256": "44c72fbcb180bc3cff2787acfd44355fbbe667bd65952e55b8ff281a023c5383",
+  "mult": 435395,
+  "shift": 30,
+  "test_count": 100,
+  "bound_fc1": 3802125,
+  "bound_fc2": 91279
+}

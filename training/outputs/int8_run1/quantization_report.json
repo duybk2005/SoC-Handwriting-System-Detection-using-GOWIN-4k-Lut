@@ -1,0 +1,72 @@
+{
+  "checkpoint_sha256": "a3a934e055484c3c7f9bc1283672b40572aae7dceb6731a3d4f8d9c8cd8b1d4a",
+  "seed": 42,
+  "torch_version": "2.14.0+cpu",
+  "numpy_version": "2.5.2",
+  "architecture": [
+    784,
+    16,
+    10
+  ],
+  "input_scale": 0.00392156862745098,
+  "weight1_scale": 0.01342959760680912,
+  "weight2_scale": 0.010869126620255118,
+  "bias1_scale": 5.2665088654153413e-05,
+  "bias2_and_logits_scale": 0.0014116727758508513,
+  "zero_points": 0,
+  "candidates": [
+    {
+      "percentile": 100.0,
+      "hidden_threshold": 28.937217712402344,
+      "hidden_scale": 0.227852107971672,
+      "mult": 248182,
+      "shift": 30,
+      "validation_correct": 5666,
+      "validation_accuracy_percent": 94.43333333333334,
+      "accumulator_bound_fc1": 3802125,
+      "accumulator_bound_fc2": 91184
+    },
+    {
+      "percentile": 99.9,
+      "hidden_threshold": 19.69009749794014,
+      "hidden_scale": 0.15504013777905623,
+      "mult": 364736,
+      "shift": 30,
+      "validation_correct": 5671,
+      "validation_accuracy_percent": 94.51666666666667,
+      "accumulator_bound_fc1": 3802125,
+      "accumulator_bound_fc2": 91243
+    },
+    {
+      "percentile": 99.5,
+      "hidden_threshold": 16.494650287628176,
+      "hidden_scale": 0.1298791361230565,
+      "mult": 435395,
+      "shift": 30,
+      "validation_correct": 5674,
+      "validation_accuracy_percent": 94.56666666666666,
+      "accumulator_bound_fc1": 3802125,
+      "accumulator_bound_fc2": 91279
+    }
+  ],
+  "selected": {
+    "percentile": 99.5,
+    "hidden_threshold": 16.494650287628176,
+    "hidden_scale": 0.1298791361230565,
+    "mult": 435395,
+    "shift": 30,
+    "validation_correct": 5674,
+    "validation_accuracy_percent": 94.56666666666666,
+    "accumulator_bound_fc1": 3802125,
+    "accumulator_bound_fc2": 91279
+  },
+  "baseline_test_accuracy_percent": 95.13000000000001,
+  "integer_test_accuracy_percent": 95.04,
+  "change_percentage_points": -0.09000000000000341,
+  "prediction_agreement_percent": 99.59,
+  "parameter_rounding": "nearest; ties away from zero",
+  "requantization": "clip((max(acc1,0)*mult + 2**(shift-1)) >> shift, 0, 127)",
+  "requantization_product_dtype": "int64",
+  "argmax_tie": "first index",
+  "weight_layout": "out_features,in_features; row-major"
+}

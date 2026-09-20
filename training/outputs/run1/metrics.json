@@ -1,0 +1,18 @@
+{
+  "config": {
+    "input_size": 784,
+    "hidden_size": 16,
+    "output_size": 10,
+    "seed": 42,
+    "epochs": 20,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "optimizer": "Adam",
+    "input_preprocessing": "pixel / 255",
+    "flatten_order": "row_major",
+    "torch_version": "2.14.0+cpu"
+  },
+  "best_epoch": 20,
+  "test_loss": 0.16455072976350785,
+  "test_accuracy": 0.9513
+}
