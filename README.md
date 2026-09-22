@@ -2,7 +2,10 @@
 Project of Specital Topics for IC Design (HCMUT)
 
 I. MỤC TIÊU BÀI TẬP (PROJECT OBJECTIVES)
-Cấu hình và tích hợp các khối IP Core của Gowin (HyperRAM_Memory_Interface_Top, GW_PLLVR, TMDS_PLLVR, CLKDIV) trên chip FPGA GW1NSR-4C.Thu nhận luồng ảnh từ cảm biến OV2640 qua giao tiếp DVP, lưu tạm vào hệ thống HyperRAM/PSRAM, và xuất hình ảnh ra cổng HDMI ở độ phân giải 1280x720 (720p). Đóng gói khối chọn luồng dữ liệu (Switch giữa Pattern Test và Camera Real-time) bằng nút nhấn key.
+
+- Cấu hình và tích hợp các khối IP Core của Gowin (HyperRAM_Memory_Interface_Top, GW_PLLVR, TMDS_PLLVR, CLKDIV) trên chip FPGA GW1NSR-4C.
+- Thu nhận luồng ảnh từ cảm biến OV2640 qua giao tiếp DVP, lưu tạm vào hệ thống HyperRAM/PSRAM, và xuất hình ảnh ra cổng HDMI ở độ phân giải 1280x720 (720p).
+- Đóng gói khối chọn luồng dữ liệu (Switch giữa Pattern Test và Camera Real-time) bằng nút nhấn key.
 
 II. KIẾN TRÚC TỔNG QUAN HỆ THỐNG (video_top)
 Sơ đồ khối luồng dữ liệu dựa trên code Verilog thực tế:
