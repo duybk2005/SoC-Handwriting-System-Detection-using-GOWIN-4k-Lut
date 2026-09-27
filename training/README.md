@@ -122,6 +122,40 @@ C prediction : 7
 Result       : CORRECT
 ```
 
+## Demo ảnh viết tay ngoài MNIST trên laptop
+
+Demo này dùng một ảnh số 7 viết tay bên ngoài bộ MNIST. Python chuẩn bị ảnh về dạng grayscale 28×28, flatten thành 784 pixel UINT8 rồi truyền buffer sang chính bản inference C đã xuất.
+
+| Ảnh gốc | Input 28×28 đưa vào mạng |
+| --- | --- |
+| ![Ảnh số 7 viết tay](demo_assets/handwritten_seven_original.jpg) | ![Ảnh 28x28 sau xử lý](demo_assets/seven_28x28.png) |
+
+Kết quả đã kiểm tra:
+
+```text
+C prediction: 7
+C/Python mismatches: {'acc1': 0, 'hidden': 0, 'logits': 0, 'class': 0}
+Logits: [-6781, -6963, 1854, 3294, -4239, -4305, -12919, 7320, -3185, -3336]
+```
+
+Logit lớn nhất nằm ở chỉ số 7 nên mô hình chọn chữ số 7. Đây là kết quả của một mẫu demo, không phải phép đo accuracy trên ảnh chụp ngoài MNIST.
+
+Chạy ảnh 28×28 đã chuẩn bị:
+
+```powershell
+.venv\Scripts\python.exe demo_image.py --image demo_assets\seven_28x28.png --ready
+```
+
+Hoặc chạy từ ảnh gốc để thực hiện cả bước tiền xử lý:
+
+```powershell
+.venv\Scripts\python.exe demo_image.py
+```
+
+Mỗi lần chạy tạo một thư mục `outputs/external_demo_<thời gian>` chứa ảnh gốc, input 28×28, báo cáo JSON và trang `demo.html`. Xem [`DEMO_GUIDE.md`](DEMO_GUIDE.md) để biết cách thử ảnh riêng.
+
+Ảnh demo: Incompetencia / Wikimedia Commons, giấy phép CC BY-SA 4.0. Chi tiết nguồn nằm trong [`demo_assets/SOURCE.md`](demo_assets/SOURCE.md).
+
 ## Các file chính
 
 ```text
@@ -132,6 +166,12 @@ training/
 ├── export_c.py
 ├── verify_full.py
 ├── test_one_mnist.py
+├── demo_image.py
+├── DEMO_GUIDE.md
+├── demo_assets/
+│   ├── handwritten_seven_original.jpg
+│   ├── seven_28x28.png
+│   └── SOURCE.md
 ├── docs/
 │   └── MLP.drawio.png
 └── outputs/
