@@ -3,7 +3,7 @@
 
 ---
 
-## 🎯 I. MỤC TIÊU BÀI TẬP (PROJECT OBJECTIVES)
+## I. MỤC TIÊU BÀI TẬP (PROJECT OBJECTIVES)
 
 * **Tích hợp IP Core:** Cấu hình và tích hợp các khối IP Core của Gowin (`HyperRAM_Memory_Interface_Top`, `GW_PLLVR`, `TMDS_PLLVR`, `CLKDIV`) trên chip FPGA **GW1NSR-4C**.
 * **Thu nhận & Xuất hình ảnh:** Thu nhận luồng ảnh từ cảm biến **OV2640** qua giao tiếp DVP, lưu đệm vào hệ thống HyperRAM/PSRAM, và xuất hình ảnh ra cổng **HDMI** ở độ phân giải **1280x720 (720p)**.
@@ -11,7 +11,7 @@
 
 ---
 
-## 🏗️ II. KIẾN TRÚC TỔNG QUAN HỆ THỐNG (`video_top`)
+## II. KIẾN TRÚC TỔNG QUAN HỆ THỐNG (`video_top`)
 
 Sơ đồ khối luồng dữ liệu dựa trên mã nguồn Verilog thực tế:
 
@@ -21,7 +21,7 @@ Sơ đồ khối luồng dữ liệu dựa trên mã nguồn Verilog thực tế
 
 ---
 
-## 🔍 III. PHÂN TÍCH CHI TIẾT CÁC MODULE TRONG CODE
+## III. PHÂN TÍCH CHI TIẾT CÁC MODULE TRONG CODE
 
 ### 1. Khối Đồng bộ & Tạo Xung Clock (Clock Management & Reset)
 * `Reset_Sync`: Khống chế hiện tượng **Metastability** khi giải phóng tín hiệu Reset hệ thống (`sys_resetn`).
@@ -51,7 +51,7 @@ Sơ đồ khối luồng dữ liệu dựa trên mã nguồn Verilog thực tế
 
 ---
 
-## ⚙️ IV. TỔNG HỢP IP CORE VÀ RÀNG BUỘC CHÂN (PIN CONSTRAINTS)
+## IV. TỔNG HỢP IP CORE VÀ RÀNG BUỘC CHÂN (PIN CONSTRAINTS)
 
 ### 1. Danh sách IP Core Gowin đã sử dụng
 * `GW_PLLVR`: PLL tạo xung cho HyperRAM.
