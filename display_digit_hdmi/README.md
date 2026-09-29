@@ -102,12 +102,6 @@ Ràng buộc: `IO_TYPE=LVCMOS18`, `PULL_MODE=DOWN` (riêng bit 9 dùng `PULL_MOD
 
 Để chỉ kiểm tra phần hiển thị (chưa cần nối chân), đặt `AUTO_TEST = 1`: chữ số sẽ tự đổi 0→9 liên tục.
 
-## Trạng thái hiện tại
-
-- Chế độ `AUTO_TEST = 1` đã chạy trên kit: chữ số hiển thị và đổi số trên HDMI.
-- Ở cấu hình `AUTO_TEST = 0` cùng với cổng `digit_in` và ràng buộc chân, project **build không báo lỗi**.
-- Chưa hoàn tất: kiểm tra từng bit `digit_in` bằng dây jumper trên phần cứng, và nối với nguồn dữ liệu thật (kết quả nhận diện từ mạng deep learning).
-
 ## Hướng phát triển
 
 - Kiểm tra toàn bộ 10 bit trên phần cứng và ghi lại kết quả.
@@ -115,6 +109,3 @@ Ràng buộc: `IO_TYPE=LVCMOS18`, `PULL_MODE=DOWN` (riêng bit 9 dùng `PULL_MOD
 - Nếu mạng chạy ngay trong FPGA: bỏ cổng ngoài `digit_in`, nối trực tiếp ngõ ra của khối mạng vào `svo_digit` bằng dây nội bộ.
 - Hiển thị thêm nhiều chữ số hoặc nhãn, đổi màu chữ, chuyển sang font bitmap.
 
-## Ghi công
-
-Lõi video dựa trên **SVO – Simple Video Out FPGA Core** © 2014 Clifford Wolf (giấy phép ISC, xem phần đầu các file `svo_*.v`).
