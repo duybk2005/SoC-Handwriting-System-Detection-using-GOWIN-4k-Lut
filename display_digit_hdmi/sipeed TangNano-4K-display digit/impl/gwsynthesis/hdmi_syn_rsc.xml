@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="top" T_Register="207(0)" T_Alu="67(0)" T_Lut="328(0)">
+ <SubModule name="u_div_5"/>
+ <SubModule name="Gowin_PLLVR_inst"/>
+ <SubModule name="u_Reset_Sync" Register="4" Alu="4" Lut="2" T_Register="4(4)" T_Alu="4(4)" T_Lut="2(2)"/>
+ <SubModule name="svo_hdmi_inst" Register="4" Lut="1" T_Register="203(4)" T_Alu="63(0)" T_Lut="326(1)">
+  <SubModule name="svo_digit" Register="51" Lut="87" T_Register="51(51)" T_Lut="87(87)"/>
+  <SubModule name="svo_enc" Register="94" Alu="6" Lut="153" T_Register="94(94)" T_Alu="6(6)" T_Lut="153(153)"/>
+  <SubModule name="svo_tmds_0" Register="19" Alu="20" Lut="32" T_Register="19(19)" T_Alu="20(20)" T_Lut="32(32)"/>
+  <SubModule name="svo_tmds_1" Register="19" Alu="18" Lut="26" T_Register="19(19)" T_Alu="18(18)" T_Lut="26(26)"/>
+  <SubModule name="svo_tmds_2" Register="16" Alu="19" Lut="27" T_Register="16(16)" T_Alu="19(19)" T_Lut="27(27)"/>
+ </SubModule>
+</Module>

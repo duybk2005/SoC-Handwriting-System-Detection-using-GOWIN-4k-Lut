@@ -1,0 +1,89 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\gowin_clkdiv\gowin_clkdiv.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\gowin_pllvr\gowin_pllvr.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_defines.vh'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v'
+Analyzing included file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_defines.vh'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":21)
+Back to file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":21)
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_openldi.v'
+Analyzing included file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_defines.vh'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_openldi.v":21)
+Back to file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_openldi.v'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_openldi.v":21)
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_tcard.v'
+Analyzing included file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_defines.vh'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_tcard.v":21)
+Back to file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_tcard.v'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_tcard.v":21)
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_term.v'
+Analyzing included file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_defines.vh'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_term.v":21)
+Back to file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_term.v'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_term.v":21)
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_tmds.v'
+Analyzing included file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_defines.vh'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_tmds.v":21)
+Back to file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_tmds.v'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_tmds.v":21)
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_utils.v'
+Analyzing included file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_defines.vh'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_utils.v":21)
+Back to file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_utils.v'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_utils.v":21)
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_vdma.v'
+Analyzing included file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_defines.vh'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_vdma.v":21)
+Back to file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_vdma.v'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_vdma.v":21)
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\svo_hdmi.v'
+Analyzing included file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_defines.vh'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\svo_hdmi.v":21)
+Back to file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\svo_hdmi.v'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\svo_hdmi.v":21)
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\top.v'
+Undeclared symbol 'clk_p', assumed default net type 'wire'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\top.v":12)
+Undeclared symbol 'clk_p5', assumed default net type 'wire'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\top.v":13)
+Undeclared symbol 'pll_lock', assumed default net type 'wire'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\top.v":14)
+Undeclared symbol 'sys_resetn', assumed default net type 'wire'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\top.v":24)
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_digit.v'
+Analyzing included file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_defines.vh'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_digit.v":2)
+Back to file 'D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_digit.v'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_digit.v":2)
+Compiling module 'top'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\top.v":1)
+Compiling module 'Gowin_CLKDIV'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\gowin_clkdiv\gowin_clkdiv.v":9)
+Compiling module 'Gowin_PLLVR'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\gowin_pllvr\gowin_pllvr.v":9)
+Compiling module 'Reset_Sync'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\top.v":47)
+Compiling module 'svo_hdmi'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\svo_hdmi.v":23)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\svo_hdmi.v":67)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\svo_hdmi.v":70)
+Compiling module 'svo_digit(SVO_MODE="640x480V")'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_digit.v":6)
+WARN  (EX3045) : Case equality operator always evaluates to false due to comparison with 'x' or 'z'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_digit.v":19)
+WARN  (EX3791) : Expression size 26 truncated to fit in target size 25("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_digit.v":46)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 14("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_digit.v":73)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 14("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_digit.v":74)
+WARN  (EX3791) : Expression size 15 truncated to fit in target size 14("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_digit.v":110)
+WARN  (EX3791) : Expression size 15 truncated to fit in target size 14("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_digit.v":112)
+Compiling module 'svo_enc(SVO_MODE="640x480V")'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":23)
+Extracting RAM for identifier 'ctrl_fifo'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":48)
+Extracting RAM for identifier 'pixel_fifo'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":51)
+Extracting RAM for identifier 'out_fifo'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":54)
+WARN  (EX3045) : Case equality operator always evaluates to false due to comparison with 'x' or 'z'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":43)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":92)
+WARN  (EX3791) : Expression size 15 truncated to fit in target size 14("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":96)
+WARN  (EX3791) : Expression size 15 truncated to fit in target size 14("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":98)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":110)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":125)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":129)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":130)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":133)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":134)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":135)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":155)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_enc.v":159)
+Compiling module 'svo_tmds'("D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\src\hdmi\svo_tmds.v":23)
+NOTE  (EX0101) : Current top module is "top"
+[5%] Running netlist conversion ...
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+[95%] Generate netlist file "D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\impl\gwsynthesis\hdmi.vg" completed
+[100%] Generate report file "D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-display digit\impl\gwsynthesis\hdmi_syn.rpt.html" completed
+GowinSynthesis finish

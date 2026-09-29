@@ -1,0 +1,35 @@
+IO_LOC "tmds_d_p[0]" 30,29;
+IO_PORT "tmds_d_p[0]" PULL_MODE=NONE DRIVE=8;
+IO_LOC "tmds_d_p[1]" 32,31;
+IO_PORT "tmds_d_p[1]" PULL_MODE=NONE DRIVE=8;
+IO_LOC "tmds_d_p[2]" 35,34;
+IO_PORT "tmds_d_p[2]" PULL_MODE=NONE DRIVE=8;
+IO_LOC "tmds_clk_p" 28,27;
+IO_PORT "tmds_clk_p" PULL_MODE=NONE DRIVE=8;
+
+IO_LOC "resetn" 14;
+IO_PORT "resetn" PULL_MODE=UP;
+IO_LOC "clk" 45;
+IO_PORT "clk" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// ---- digit_in[9:0]: Bank 3 (1.8V), header P6 ----
+IO_LOC "digit_in[0]" 23;
+IO_PORT "digit_in[0]" IO_TYPE=LVCMOS18 PULL_MODE=DOWN;
+IO_LOC "digit_in[1]" 22;
+IO_PORT "digit_in[1]" IO_TYPE=LVCMOS18 PULL_MODE=DOWN;
+IO_LOC "digit_in[2]" 21;
+IO_PORT "digit_in[2]" IO_TYPE=LVCMOS18 PULL_MODE=DOWN;
+IO_LOC "digit_in[3]" 20;
+IO_PORT "digit_in[3]" IO_TYPE=LVCMOS18 PULL_MODE=DOWN;
+IO_LOC "digit_in[4]" 19;
+IO_PORT "digit_in[4]" IO_TYPE=LVCMOS18 PULL_MODE=DOWN;
+IO_LOC "digit_in[5]" 18;
+IO_PORT "digit_in[5]" IO_TYPE=LVCMOS18 PULL_MODE=DOWN;
+IO_LOC "digit_in[6]" 17;
+IO_PORT "digit_in[6]" IO_TYPE=LVCMOS18 PULL_MODE=DOWN;
+IO_LOC "digit_in[7]" 13;
+IO_PORT "digit_in[7]" IO_TYPE=LVCMOS18 PULL_MODE=DOWN;
+IO_LOC "digit_in[8]" 16;
+IO_PORT "digit_in[8]" IO_TYPE=LVCMOS18 PULL_MODE=DOWN;
+IO_LOC "digit_in[9]" 15;
+IO_PORT "digit_in[9]" IO_TYPE=LVCMOS18 PULL_MODE=NONE;  
