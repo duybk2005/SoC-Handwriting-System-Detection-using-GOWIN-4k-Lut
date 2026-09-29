@@ -1,0 +1,33 @@
+Reading netlist file: "D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-example main camera_hdmi\impl\gwsynthesis\camera_hdmi.vg"
+Parsing netlist file "D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-example main camera_hdmi\impl\gwsynthesis\camera_hdmi.vg" completed
+Processing netlist completed
+Reading constraint file: "D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-example main camera_hdmi\src\dk_video.cst"
+Physical Constraint parsed completed
+Running placement......
+[10%] Placement Phase 0 completed
+[20%] Placement Phase 1 completed
+[30%] Placement Phase 2 completed
+WARN  (TA1132) :  'ch0_vfb_clk_in' was determined to be a clock but was not created.
+WARN  (TA1132) :  'HyperRAM_Memory_Interface_Top_inst/u_hpram_top/clkdiv/CLKOUT.default_gen_clk' was determined to be a clock but was not created.
+WARN  (TA1117) : Can't calculate clocks' relationship between: "I_clk" and "serial_clk"
+[50%] Placement Phase 3 completed
+Running routing......
+[60%] Routing Phase 0 completed
+[70%] Routing Phase 1 completed
+[80%] Routing Phase 2 completed
+WARN  (PR1014) : Generic routing resource will be used to clock signal 'I_clk_d' by the specified constraint. And then it may lead to the excessive delay or skew
+[90%] Routing Phase 3 completed
+Running timing analysis......
+[95%] Timing analysis completed
+Placement and routing completed
+Bitstream generation in progress......
+Bitstream generation completed
+Running power analysis......
+[100%] Power analysis completed
+Generate file "D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-example main camera_hdmi\impl\pnr\camera_hdmi.power.html" completed
+Generate file "D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-example main camera_hdmi\impl\pnr\camera_hdmi.pin.html" completed
+Generate file "D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-example main camera_hdmi\impl\pnr\camera_hdmi.rpt.html" completed
+Generate file "D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-example main camera_hdmi\impl\pnr\camera_hdmi.rpt.txt" completed
+Generate file "D:\hcmut\HK261\CDTKVM\my_test\sipeed TangNano-4K-example main camera_hdmi\impl\pnr\camera_hdmi.tr.html" completed
+Mon Sep 28 18:35:31 2026
+

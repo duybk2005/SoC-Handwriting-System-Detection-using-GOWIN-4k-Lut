@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="video_top" Register="31" Lut="94" T_Register="1179(31)" T_Alu="272(0)" T_Lut="1617(94)" T_Bsram="6(0)">
+ <SubModule name="testpattern_inst" Register="77" Lut="110" T_Register="77(77)" T_Lut="110(110)"/>
+ <SubModule name="u_Reset_Sync" Register="4" Lut="6" T_Register="4(4)" T_Lut="6(6)"/>
+ <SubModule name="u_OV2640_Controller" T_Register="82(0)" T_Alu="8(0)" T_Lut="93(0)" T_Bsram="1(0)">
+  <SubModule name="LUT" Register="9" Alu="8" Lut="1" Bsram="1" T_Register="9(9)" T_Alu="8(8)" T_Lut="1(1)" T_Bsram="1(1)"/>
+  <SubModule name="I2C" Register="73" Lut="92" T_Register="73(73)" T_Lut="92(92)"/>
+ </SubModule>
+ <SubModule name="key_flag_inst" Register="23" Lut="46" T_Register="23(23)" T_Lut="46(46)"/>
+ <SubModule name="Video_Frame_Buffer_Top_inst" Register="441" Alu="86" Lut="418" Bsram="4" T_Register="441(441)" T_Alu="86(86)" T_Lut="418(418)" T_Bsram="4(4)"/>
+ <SubModule name="GW_PLLVR_inst"/>
+ <SubModule name="HyperRAM_Memory_Interface_Top_inst" Register="413" Alu="110" Lut="555" Bsram="1" T_Register="413(413)" T_Alu="110(110)" T_Lut="555(555)" T_Bsram="1(1)"/>
+ <SubModule name="syn_gen_inst" Register="35" Lut="78" T_Register="35(35)" T_Lut="78(78)"/>
+ <SubModule name="TMDS_PLLVR_inst"/>
+ <SubModule name="DVI_TX_Top_inst" Register="73" Alu="68" Lut="217" T_Register="73(73)" T_Alu="68(68)" T_Lut="217(217)"/>
+</Module>
