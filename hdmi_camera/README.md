@@ -15,9 +15,8 @@
 
 Sơ đồ khối luồng dữ liệu dựa trên mã nguồn Verilog thực tế:
 
-<p align="center">
-  <img width="1024" src="https://github.com/user-attachments/assets/718e1d6f-2254-46a2-b5d6-a0a18ad54cc2" alt="System Architecture Diagram">
-</p>
+<img width="2756" height="1521" alt="image" src="https://github.com/user-attachments/assets/a259bbdc-0f6e-44c4-9a6a-f13a6e0a9028" />
+
 
 ---
 
