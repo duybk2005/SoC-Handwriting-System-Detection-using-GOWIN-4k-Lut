@@ -1,0 +1,99 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ahb_band_buf.v'
+Analyzing Verilog file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\cam_capture.v'
+Analyzing Verilog file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\digit_7seg.v'
+Analyzing Verilog file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\gowin_clkdiv\gowin_clkdiv.v'
+Analyzing Verilog file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\gowin_empu\gowin_empu.v'
+Analyzing Verilog file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\gowin_pllvr\gowin_pllvr.v'
+Analyzing Verilog file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v'
+Analyzing included file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_defines.vh'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":21)
+Back to file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":21)
+Analyzing Verilog file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_tmds.v'
+Analyzing included file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_defines.vh'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_tmds.v":21)
+Back to file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_tmds.v'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_tmds.v":21)
+Analyzing Verilog file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\mac_fc.v'
+Analyzing Verilog file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ov2640\I2C_Interface.v'
+Analyzing Verilog file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ov2640\OV2640_Controller.v'
+Analyzing Verilog file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ov2640\OV2640_Registers.v'
+Analyzing Verilog file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v'
+Analyzing included file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_defines.vh'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v":8)
+Back to file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v":8)
+Analyzing Verilog file 'C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\top.v'
+Compiling module 'top'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\top.v":10)
+Compiling module 'Gowin_PLLVR'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\gowin_pllvr\gowin_pllvr.v":9)
+Compiling module 'Gowin_CLKDIV'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\gowin_clkdiv\gowin_clkdiv.v":9)
+Compiling module 'OV2640_Controller'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ov2640\OV2640_Controller.v":1)
+Compiling module 'OV2640_Registers'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ov2640\OV2640_Registers.v":1)
+WARN  (EX3791) : Expression size 10 truncated to fit in target size 9("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ov2640\OV2640_Registers.v":37)
+Compiling module 'I2C_Interface(SID=8'h60)'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ov2640\I2C_Interface.v":14)
+WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ov2640\I2C_Interface.v":81)
+WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ov2640\I2C_Interface.v":166)
+Compiling module 'cam_capture'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\cam_capture.v":21)
+Compiling module 'ahb_band_buf'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ahb_band_buf.v":31)
+Extracting RAM for identifier 'image_ram'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ahb_band_buf.v":140)
+Extracting RAM for identifier 'mem'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ahb_band_buf.v":193)
+Extracting RAM for identifier 'mem'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ahb_band_buf.v":193)
+Extracting RAM for identifier 'mem'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ahb_band_buf.v":193)
+Extracting RAM for identifier 'mem'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ahb_band_buf.v":193)
+Extracting RAM for identifier 'mem'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ahb_band_buf.v":193)
+Extracting RAM for identifier 'mem'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ahb_band_buf.v":193)
+Extracting RAM for identifier 'mem'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ahb_band_buf.v":193)
+Compiling module 'mac_fc'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\mac_fc.v":20)
+Compiling module '**'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\gowin_empu\gowin_empu.v":441)
+Compiling module 'Reset_Sync'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\top.v":308)
+Compiling module 'svo_hdmi'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v":10)
+WARN  (EX3045) : Case equality operator always evaluates to false due to comparison with 'x' or 'z'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v":46)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v":62)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v":65)
+WARN  (EX3791) : Expression size 15 truncated to fit in target size 14("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v":82)
+WARN  (EX3791) : Expression size 15 truncated to fit in target size 14("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v":83)
+WARN  (EX3791) : Expression size 11 truncated to fit in target size 5("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v":91)
+WARN  (EX3791) : Expression size 11 truncated to fit in target size 5("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v":92)
+WARN  (EX3791) : Expression size 28 truncated to fit in target size 4("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v":116)
+Compiling module 'digit_7seg'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\digit_7seg.v":15)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 14("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\digit_7seg.v":63)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 14("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\digit_7seg.v":64)
+WARN  (EX3791) : Expression size 11 truncated to fit in target size 10("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v":233)
+WARN  (EX3791) : Expression size 15 truncated to fit in target size 14("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v":272)
+WARN  (EX3791) : Expression size 15 truncated to fit in target size 14("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v":274)
+Compiling module 'svo_enc(SVO_MODE="640x480V")'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":23)
+Extracting RAM for identifier 'ctrl_fifo'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":48)
+Extracting RAM for identifier 'pixel_fifo'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":51)
+Extracting RAM for identifier 'out_fifo'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":54)
+WARN  (EX3045) : Case equality operator always evaluates to false due to comparison with 'x' or 'z'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":43)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":92)
+WARN  (EX3791) : Expression size 15 truncated to fit in target size 14("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":96)
+WARN  (EX3791) : Expression size 15 truncated to fit in target size 14("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":98)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":110)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":125)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":129)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":130)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":133)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":134)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":135)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":155)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v":159)
+Compiling module 'svo_tmds'("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_tmds.v":23)
+NOTE  (EX0101) : Current top module is "top"
+[5%] Running netlist conversion ...
+WARN  (CV0020) : Input cam_data[1:0] is unused("C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\top.v":21)
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+WARN  (IF0005) : Not support distributed ROM in current device, please change romstyle property setting
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+[95%] Generate netlist file "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\impl\gwsynthesis\user_image_fpga.vg" completed
+[100%] Generate report file "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\impl\gwsynthesis\user_image_fpga_syn.rpt.html" completed
+GowinSynthesis finish

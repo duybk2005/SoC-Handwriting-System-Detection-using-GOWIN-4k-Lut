@@ -1,0 +1,144 @@
+[
+ {
+  "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/top.v",
+  "InstLine" : 10,
+  "InstName" : "top",
+  "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/top.v",
+  "ModuleLine" : 10,
+  "ModuleName" : "top",
+  "SubInsts" : [
+   {
+    "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/top.v",
+    "InstLine" : 186,
+    "InstName" : "u_mcu",
+    "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/gowin_empu/gowin_empu.v",
+    "ModuleLine" : 9,
+    "ModuleName" : "mcu"
+   },
+   {
+    "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/top.v",
+    "InstLine" : 38,
+    "InstName" : "u_pll",
+    "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/gowin_pllvr/gowin_pllvr.v",
+    "ModuleLine" : 9,
+    "ModuleName" : "Gowin_PLLVR"
+   },
+   {
+    "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/top.v",
+    "InstLine" : 45,
+    "InstName" : "u_clkdiv",
+    "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/gowin_clkdiv/gowin_clkdiv.v",
+    "ModuleLine" : 9,
+    "ModuleName" : "Gowin_CLKDIV"
+   },
+   {
+    "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/top.v",
+    "InstLine" : 71,
+    "InstName" : "u_cam_cfg",
+    "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/ov2640/OV2640_Controller.v",
+    "ModuleLine" : 1,
+    "ModuleName" : "OV2640_Controller",
+    "SubInsts" : [
+     {
+      "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/ov2640/OV2640_Controller.v",
+      "InstLine" : 30,
+      "InstName" : "LUT",
+      "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/ov2640/OV2640_Registers.v",
+      "ModuleLine" : 1,
+      "ModuleName" : "OV2640_Registers"
+     },
+     {
+      "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/ov2640/OV2640_Controller.v",
+      "InstLine" : 41,
+      "InstName" : "I2C",
+      "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/ov2640/I2C_Interface.v",
+      "ModuleLine" : 14,
+      "ModuleName" : "I2C_Interface"
+     }
+    ]
+   },
+   {
+    "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/top.v",
+    "InstLine" : 91,
+    "InstName" : "u_cam",
+    "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/cam_capture.v",
+    "ModuleLine" : 21,
+    "ModuleName" : "cam_capture"
+   },
+   {
+    "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/top.v",
+    "InstLine" : 128,
+    "InstName" : "u_slave",
+    "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/ahb_band_buf.v",
+    "ModuleLine" : 31,
+    "ModuleName" : "ahb_band_buf"
+   },
+   {
+    "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/top.v",
+    "InstLine" : 169,
+    "InstName" : "u_mac",
+    "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/mac_fc.v",
+    "ModuleLine" : 20,
+    "ModuleName" : "mac_fc"
+   },
+   {
+    "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/top.v",
+    "InstLine" : 273,
+    "InstName" : "u_hdmi_rst",
+    "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/top.v",
+    "ModuleLine" : 308,
+    "ModuleName" : "Reset_Sync"
+   },
+   {
+    "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/top.v",
+    "InstLine" : 287,
+    "InstName" : "u_hdmi",
+    "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/svo_hdmi.v",
+    "ModuleLine" : 10,
+    "ModuleName" : "svo_hdmi",
+    "SubInsts" : [
+     {
+      "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/svo_hdmi.v",
+      "InstLine" : 215,
+      "InstName" : "u_digit",
+      "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/digit_7seg.v",
+      "ModuleLine" : 15,
+      "ModuleName" : "digit_7seg"
+     },
+     {
+      "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/svo_hdmi.v",
+      "InstLine" : 284,
+      "InstName" : "svo_enc",
+      "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/hdmi/svo_enc.v",
+      "ModuleLine" : 23,
+      "ModuleName" : "svo_enc"
+     },
+     {
+      "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/svo_hdmi.v",
+      "InstLine" : 304,
+      "InstName" : "svo_tmds_0",
+      "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/hdmi/svo_tmds.v",
+      "ModuleLine" : 23,
+      "ModuleName" : "svo_tmds"
+     },
+     {
+      "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/svo_hdmi.v",
+      "InstLine" : 312,
+      "InstName" : "svo_tmds_1",
+      "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/hdmi/svo_tmds.v",
+      "ModuleLine" : 23,
+      "ModuleName" : "svo_tmds"
+     },
+     {
+      "InstFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/svo_hdmi.v",
+      "InstLine" : 320,
+      "InstName" : "svo_tmds_2",
+      "ModuleFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/hdmi/svo_tmds.v",
+      "ModuleLine" : 23,
+      "ModuleName" : "svo_tmds"
+     }
+    ]
+   }
+  ]
+ }
+]

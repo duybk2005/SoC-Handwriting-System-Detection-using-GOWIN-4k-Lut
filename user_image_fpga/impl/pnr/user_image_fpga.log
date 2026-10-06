@@ -1,0 +1,30 @@
+Reading netlist file: "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\impl\gwsynthesis\user_image_fpga.vg"
+Parsing netlist file "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\impl\gwsynthesis\user_image_fpga.vg" completed
+Processing netlist completed
+Reading constraint file: "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\user_image_fpga.cst"
+Physical Constraint parsed completed
+Running placement......
+[10%] Placement Phase 0 completed
+[20%] Placement Phase 1 completed
+[30%] Placement Phase 2 completed
+WARN  (TA1132) :  'u_clkdiv/clkdiv_inst/CLKOUT.default_gen_clk' was determined to be a clock but was not created.
+[50%] Placement Phase 3 completed
+Running routing......
+[60%] Routing Phase 0 completed
+[70%] Routing Phase 1 completed
+[80%] Routing Phase 2 completed
+[90%] Routing Phase 3 completed
+Running timing analysis......
+[95%] Timing analysis completed
+Placement and routing completed
+Bitstream generation in progress......
+Bitstream generation completed
+Running power analysis......
+[100%] Power analysis completed
+Generate file "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\impl\pnr\user_image_fpga.power.html" completed
+Generate file "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\impl\pnr\user_image_fpga.pin.html" completed
+Generate file "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\impl\pnr\user_image_fpga.rpt.html" completed
+Generate file "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\impl\pnr\user_image_fpga.rpt.txt" completed
+Generate file "C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\impl\pnr\user_image_fpga.tr.html" completed
+Tue Oct  6 12:01:22 2026
+

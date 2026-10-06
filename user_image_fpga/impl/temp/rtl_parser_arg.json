@@ -1,0 +1,69 @@
+{
+ "Device" : "GW1NSR-4C",
+ "Files" : [
+  {
+   "Path" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/ahb_band_buf.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/cam_capture.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/digit_7seg.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/gowin_clkdiv/gowin_clkdiv.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/gowin_empu/gowin_empu.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/gowin_pllvr/gowin_pllvr.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/hdmi/svo_enc.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/hdmi/svo_tmds.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/mac_fc.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/ov2640/I2C_Interface.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/ov2640/OV2640_Controller.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/ov2640/OV2640_Registers.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/svo_hdmi.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/src/top.v",
+   "Type" : "verilog"
+  }
+ ],
+ "IncludePath" : [
+
+ ],
+ "LoopLimit" : 2000,
+ "ResultFile" : "C:/Users/diego/OneDrive/Documents/STUDY_MATERIAL/ChuuyenDe/project 1/user_image/user_image_fpga/impl/temp/rtl_parser.result",
+ "Top" : "",
+ "VerilogStd" : "verilog_2001",
+ "VhdlStd" : "vhdl_93"
+}

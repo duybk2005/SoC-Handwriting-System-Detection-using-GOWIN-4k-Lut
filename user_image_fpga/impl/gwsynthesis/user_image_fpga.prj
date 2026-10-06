@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-synthesis-project>
+<Project>
+    <Version>beta</Version>
+    <Device id="GW1NSR-4C" package="QFN48P" speed="6" partNumber="GW1NSR-LV4CQN48PC6/I5"/>
+    <FileList>
+        <File path="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ahb_band_buf.v" type="verilog"/>
+        <File path="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\cam_capture.v" type="verilog"/>
+        <File path="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\digit_7seg.v" type="verilog"/>
+        <File path="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\gowin_clkdiv\gowin_clkdiv.v" type="verilog"/>
+        <File path="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\gowin_empu\gowin_empu.v" type="verilog"/>
+        <File path="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\gowin_pllvr\gowin_pllvr.v" type="verilog"/>
+        <File path="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_enc.v" type="verilog"/>
+        <File path="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\hdmi\svo_tmds.v" type="verilog"/>
+        <File path="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\mac_fc.v" type="verilog"/>
+        <File path="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ov2640\I2C_Interface.v" type="verilog"/>
+        <File path="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ov2640\OV2640_Controller.v" type="verilog"/>
+        <File path="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\ov2640\OV2640_Registers.v" type="verilog"/>
+        <File path="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\svo_hdmi.v" type="verilog"/>
+        <File path="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\src\top.v" type="verilog"/>
+    </FileList>
+    <OptionList>
+        <Option type="disable_insert_pad" value="0"/>
+        <Option type="global_freq" value="50.000"/>
+        <Option type="looplimit" value="2000"/>
+        <Option type="output_file" value="C:\Users\diego\OneDrive\Documents\STUDY_MATERIAL\ChuuyenDe\project 1\user_image\user_image_fpga\impl\gwsynthesis\user_image_fpga.vg"/>
+        <Option type="print_all_synthesis_warning" value="0"/>
+        <Option type="ram_rw_check" value="0"/>
+        <Option type="vcc" value="1.2"/>
+        <Option type="verilog_language" value="verilog-2001"/>
+        <Option type="vhdl_language" value="vhdl-1993"/>
+    </OptionList>
+</Project>

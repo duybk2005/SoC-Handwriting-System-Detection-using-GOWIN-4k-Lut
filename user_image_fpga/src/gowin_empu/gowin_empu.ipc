@@ -1,0 +1,14 @@
+[General]
+ipc_version=4
+file=gowin_empu
+module=mcu
+target_device=gw1nsr4c-000
+type=gowin_empu_gw1ns4
+version=1.0
+
+[Config]
+ENABLE_AHB2_MASTER=true
+LANG=0
+ENABLE_AHB2_SLAVE=true
+Synthesis_tool=GowinSynthesis
+Sram_Size=3

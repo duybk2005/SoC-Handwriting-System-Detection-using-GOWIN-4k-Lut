@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="top" Register="37" Alu="20" Lut="27" Bsram="1" T_Register="973(37)" T_Alu="151(20)" T_Lut="2134(27)" T_MULTADDALU18X18="3(0)" T_Bsram="9(1)">
+ <SubModule name="u_pll"/>
+ <SubModule name="u_clkdiv"/>
+ <SubModule name="u_cam_cfg" T_Register="98(0)" T_Alu="8(0)" T_Lut="622(0)">
+  <SubModule name="LUT" Register="25" Alu="8" Lut="534" T_Register="25(25)" T_Alu="8(8)" T_Lut="534(534)"/>
+  <SubModule name="I2C" Register="73" Lut="88" T_Register="73(73)" T_Lut="88(88)"/>
+ </SubModule>
+ <SubModule name="u_cam" Register="135" Alu="8" Lut="87" MULTADDALU18X18="1" T_Register="135(135)" T_Alu="8(8)" T_Lut="87(87)" T_MULTADDALU18X18="1(1)"/>
+ <SubModule name="u_slave" Register="94" Lut="286" Bsram="8" T_Register="94(94)" T_Lut="286(286)" T_Bsram="8(8)"/>
+ <SubModule name="u_mac" Register="119" Lut="297" MULTADDALU18X18="1" T_Register="119(119)" T_Lut="297(297)" T_MULTADDALU18X18="1(1)"/>
+ <SubModule name="u_hdmi_rst" Register="4" Alu="4" Lut="1" T_Register="4(4)" T_Alu="4(4)" T_Lut="1(1)"/>
+ <SubModule name="u_hdmi" Register="62" Lut="252" MULTADDALU18X18="1" T_Register="486(62)" T_Alu="111(0)" T_Lut="814(252)" T_MULTADDALU18X18="1(1)">
+  <SubModule name="u_digit" Register="8" T_Register="8(8)"/>
+  <SubModule name="svo_enc" Register="302" Alu="6" Lut="247" T_Register="302(302)" T_Alu="6(6)" T_Lut="247(247)"/>
+  <SubModule name="svo_tmds_0" Register="38" Alu="35" Lut="118" T_Register="38(38)" T_Alu="35(35)" T_Lut="118(118)"/>
+  <SubModule name="svo_tmds_1" Register="38" Alu="35" Lut="97" T_Register="38(38)" T_Alu="35(35)" T_Lut="97(97)"/>
+  <SubModule name="svo_tmds_2" Register="38" Alu="35" Lut="100" T_Register="38(38)" T_Alu="35(35)" T_Lut="100(100)"/>
+ </SubModule>
+</Module>
