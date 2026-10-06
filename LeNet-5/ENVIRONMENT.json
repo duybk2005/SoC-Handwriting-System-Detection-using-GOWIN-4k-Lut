@@ -1,0 +1,11 @@
+{
+  "verified_original_environment": {
+    "python": "3.14.6",
+    "torch": "2.14.0+cpu",
+    "torchvision": "0.29.0+cpu",
+    "numpy": "2.5.2",
+    "matplotlib": "3.11.2",
+    "pillow": "12.3.0"
+  },
+  "note": "requirements.txt lists dependencies without version pins. Different versions/hardware need fresh verification."
+}

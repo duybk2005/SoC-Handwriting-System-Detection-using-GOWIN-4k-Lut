@@ -1,0 +1,151 @@
+{
+  "passed": true,
+  "test_count": 10000,
+  "comparison": "Integer model reconstructed from model_image.mem vs verified Stage 4 C DLL",
+  "all_15_tensors": {
+    "input": {
+      "compared_images": 10000,
+      "compared_elements": 10240000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "c1_acc": {
+      "compared_images": 10000,
+      "compared_elements": 47040000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "c1_activation": {
+      "compared_images": 10000,
+      "compared_elements": 47040000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "s2": {
+      "compared_images": 10000,
+      "compared_elements": 11760000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "c3_acc": {
+      "compared_images": 10000,
+      "compared_elements": 16000000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "c3_activation": {
+      "compared_images": 10000,
+      "compared_elements": 16000000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "s4": {
+      "compared_images": 10000,
+      "compared_elements": 4000000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "c5_acc": {
+      "compared_images": 10000,
+      "compared_elements": 1200000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "c5_activation": {
+      "compared_images": 10000,
+      "compared_elements": 1200000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "flatten": {
+      "compared_images": 10000,
+      "compared_elements": 1200000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "f6_acc": {
+      "compared_images": 10000,
+      "compared_elements": 840000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "f6_activation": {
+      "compared_images": 10000,
+      "compared_elements": 840000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "output_acc": {
+      "compared_images": 10000,
+      "compared_elements": 100000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "logits": {
+      "compared_images": 10000,
+      "compared_elements": 100000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "predictions": {
+      "compared_images": 10000,
+      "compared_elements": 10000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    }
+  },
+  "versus_stage3_saved_predictions": {
+    "logits": {
+      "compared_images": 10000,
+      "compared_elements": 100000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "predictions": {
+      "compared_images": 10000,
+      "compared_elements": 10000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    }
+  },
+  "correct": 9894,
+  "accuracy_percent": 98.94,
+  "c_dll_sha256": "f25818cb36e842f40e18ae5e83b4ee746a746b06945d110f64bc53ef145f6234",
+  "stage4_full_test_report_sha256": "4f22b82b48e100a372e47888d771b9e3a9e9143cfeccb580bdf0c45f3b2261af",
+  "model_npz_sha256": "e28ba5a41626d7d61d06269b4c1dc92b8afac7e413f2161e0ae18d22c918caa0",
+  "scope": "CPU verification; not FPGA timing/accuracy"
+}

@@ -1,0 +1,24 @@
+{
+  "status": "completed",
+  "count": 10000,
+  "correct": 9894,
+  "accuracy_percent": 98.94,
+  "float_correct": 9899,
+  "float_accuracy_percent": 98.99,
+  "accuracy_drop_percentage_points": 0.05,
+  "float_integer_agreement": 9974,
+  "agreement_percent": 99.74,
+  "chosen_percentile": 99.0,
+  "validation_correct": 5925,
+  "full_test_reload": {
+    "full_test_count": 10000,
+    "tensors_equal": true,
+    "logits_mismatches": 0,
+    "prediction_mismatches": 0,
+    "saturation_identical": true
+  },
+  "checkpoint_sha256": "effe4fb5b09cf55273899649e296040c7213964073fbdaad464e4b6a824730f3",
+  "frozen_selection_sha256": "e71b4023e6276aea0da1d8bc5b344f3b5482f47aca84f07ac9ec96ebabb5e5d5",
+  "total_seconds": 47.36556880000171,
+  "scope": "Stage3 Python integer MNIST; C/RTL/mem/FPGA/camera not implemented"
+}

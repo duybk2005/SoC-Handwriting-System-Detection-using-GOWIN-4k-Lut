@@ -1,0 +1,72 @@
+{
+  "count": 10000,
+  "correct": 9899,
+  "loss": 0.030740658730478026,
+  "accuracy": 0.9899,
+  "accuracy_percent": 98.99,
+  "confusion_rows": "true label",
+  "confusion_columns": "predicted label",
+  "checkpoint": "C:\\Users\\ADMIN\\prj_1\\outputs\\lenet5\\float_20260930_142800_567918\\lenet5_best.pt",
+  "checkpoint_sha256": "effe4fb5b09cf55273899649e296040c7213964073fbdaad464e4b6a824730f3",
+  "checkpoint_epoch": 8,
+  "batch_size": 256,
+  "model_id": "lenet5_variant_b_v1",
+  "preprocessing": {
+    "raw_dtype": "uint8",
+    "raw_shape": [
+      1,
+      28,
+      28
+    ],
+    "pad_each_edge": 2,
+    "pad_value": 0,
+    "resize": false,
+    "float_dtype": "float32",
+    "normalization": "pixel / 255",
+    "input_shape": [
+      1,
+      32,
+      32
+    ],
+    "layout": "NCHW",
+    "polarity": "bright strokes on dark background",
+    "augmentation": "none"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.14.0+cpu",
+    "torchvision": "0.29.0+cpu",
+    "numpy": "2.5.2",
+    "matplotlib": "3.11.2",
+    "device": "cpu",
+    "cuda_available": false,
+    "device_name": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "cpu_count": 12,
+    "threads": 4,
+    "interop_threads": 1,
+    "deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "reproducibility_limit": "No bitwise guarantee across hardware or library versions"
+  },
+  "source_sha256": {
+    "__init__.py": "1f2a1a2509758dbad99dddbe9ade3f7419ee11487c35cdb90d9267cd2a4c2574",
+    "common.py": "2651558e54b780b470cb65a69c04f0416fbdcb1b3df3e386cc4a13d169e502eb",
+    "data.py": "76effdf1782abec26aa4245a15bb823f53c88a8179bb429899fd48f064d28c46",
+    "evaluate.py": "45819831d80793cbeb151386223222920ea5f67d1cffa911aa664336eaf5e747",
+    "model.py": "39c99627282190b58ada532662ed7bc7a4dd724a8f3fad70a43c8d0f74f9d548",
+    "plots.py": "e0a399a1028af892b814702d571dd32e04a5ce47ed828a20e0297350334a970b",
+    "train.py": "f6edb95e520053e96c9e5a0348311ed92d3ba63635766c89d2f5bbf81a0d2850"
+  },
+  "dataset_sha256": {
+    "train-images-idx3-ubyte": "ba891046e6505d7aadcbbe25680a0738ad16aec93bde7f9b65e87a2fc25776db",
+    "train-labels-idx1-ubyte": "65a50cbbf4e906d70832878ad85ccda5333a97f0f4c3dd2ef09a8a9eef7101c5",
+    "t10k-images-idx3-ubyte": "0fa7898d509279e482958e8ce81c8e77db3f2f8254e26661ceb7762c4d494ce7",
+    "t10k-labels-idx1-ubyte": "ff7bcfd416de33731a308c3f266cc351222c34898ecbeaf847f06e48f7ec33f2"
+  },
+  "parameter_count": 61706,
+  "parameter_float32_bytes": 246824,
+  "checkpoint_file_bytes": 253317,
+  "scope": "MNIST float only; no integer, FPGA or camera evaluation"
+}

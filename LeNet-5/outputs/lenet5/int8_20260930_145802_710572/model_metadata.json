@@ -1,0 +1,658 @@
+{
+  "schema": "lenet5_integer_v1",
+  "model_id": "lenet5_variant_b_v1",
+  "preprocessing": {
+    "raw_dtype": "uint8",
+    "raw_shape": [
+      1,
+      28,
+      28
+    ],
+    "pad_each_edge": 2,
+    "pad_value": 0,
+    "resize": false,
+    "float_dtype": "float32",
+    "normalization": "pixel / 255",
+    "input_shape": [
+      1,
+      32,
+      32
+    ],
+    "layout": "NCHW",
+    "polarity": "bright strokes on dark background",
+    "augmentation": "none"
+  },
+  "checkpoint_sha256": "effe4fb5b09cf55273899649e296040c7213964073fbdaad464e4b6a824730f3",
+  "float_run": "C:\\Users\\ADMIN\\prj_1\\outputs\\lenet5\\float_20260930_142800_567918",
+  "source_sha256": {
+    "__init__.py": "1f2a1a2509758dbad99dddbe9ade3f7419ee11487c35cdb90d9267cd2a4c2574",
+    "common.py": "2651558e54b780b470cb65a69c04f0416fbdcb1b3df3e386cc4a13d169e502eb",
+    "data.py": "76effdf1782abec26aa4245a15bb823f53c88a8179bb429899fd48f064d28c46",
+    "evaluate.py": "45819831d80793cbeb151386223222920ea5f67d1cffa911aa664336eaf5e747",
+    "integer.py": "d581854ae03ed174f429a68b4b978cd83dafbd575c61866fe6b80e2aee7a9f70",
+    "model.py": "39c99627282190b58ada532662ed7bc7a4dd724a8f3fad70a43c8d0f74f9d548",
+    "plots.py": "e0a399a1028af892b814702d571dd32e04a5ce47ed828a20e0297350334a970b",
+    "quantize.py": "c833e3004baa163d526b4f7b1044a5f1d856436ab56e6e9c498057e8ba15a103",
+    "train.py": "f6edb95e520053e96c9e5a0348311ed92d3ba63635766c89d2f5bbf81a0d2850"
+  },
+  "dataset_sha256": {
+    "train-images-idx3-ubyte": "ba891046e6505d7aadcbbe25680a0738ad16aec93bde7f9b65e87a2fc25776db",
+    "train-labels-idx1-ubyte": "65a50cbbf4e906d70832878ad85ccda5333a97f0f4c3dd2ef09a8a9eef7101c5",
+    "t10k-images-idx3-ubyte": "0fa7898d509279e482958e8ce81c8e77db3f2f8254e26661ceb7762c4d494ce7",
+    "t10k-labels-idx1-ubyte": "ff7bcfd416de33731a308c3f266cc351222c34898ecbeaf847f06e48f7ec33f2"
+  },
+  "calibration_sha256": "b13f4973fbdc6af786e24cd25ac81938d7ec78471b15db3e9089f059646156f4",
+  "split_sha256": "49fa083e5e837d3d7ec7b2c4bd9d067f62be30c50f0f578d7152838ee6f0d338",
+  "selection_sha256": "e71b4023e6276aea0da1d8bc5b344f3b5482f47aca84f07ac9ec96ebabb5e5d5",
+  "percentile": 99.0,
+  "scales": [
+    {
+      "layer": "c1",
+      "input_scale": 0.00392156862745098,
+      "weight_scale": 0.006119268147025522,
+      "bias_and_accumulator_scale": 2.399712998833538e-05,
+      "zero_point": 0,
+      "weight_max_error": 0.0030594068014715425,
+      "bias_max_error": 1.1676394734205786e-05,
+      "output_scale": 0.015433596532175842,
+      "calibration_threshold": 1.960066759586332,
+      "multiplier": 1669522,
+      "shift": 30,
+      "ratio": 0.0015548631155613243,
+      "represented_ratio": 0.001554863527417183,
+      "absolute_ratio_error": 4.118558586622273e-10,
+      "relative_ratio_error": 2.648823903148171e-07
+    },
+    {
+      "layer": "c3",
+      "input_scale": 0.015433596532175842,
+      "weight_scale": 0.004045916823890265,
+      "bias_and_accumulator_scale": 6.244304786266469e-05,
+      "zero_point": 0,
+      "weight_max_error": 0.0020225735190581157,
+      "bias_max_error": 3.087306744234408e-05,
+      "output_scale": 0.02562662802343292,
+      "calibration_threshold": 3.254581758975981,
+      "multiplier": 2616330,
+      "shift": 30,
+      "ratio": 0.0024366470612351703,
+      "represented_ratio": 0.002436647191643715,
+      "absolute_ratio_error": 1.304085446400538e-10,
+      "relative_ratio_error": 5.351966918588033e-08
+    },
+    {
+      "layer": "c5",
+      "input_scale": 0.02562662802343292,
+      "weight_scale": 0.004726448396998127,
+      "bias_and_accumulator_scale": 0.00012112293494182182,
+      "zero_point": 0,
+      "weight_max_error": 0.0023632147532748338,
+      "bias_max_error": 6.018454684622587e-05,
+      "output_scale": 0.06562242447860597,
+      "calibration_threshold": 8.334047908782958,
+      "multiplier": 1981865,
+      "shift": 30,
+      "ratio": 0.001845755256746266,
+      "represented_ratio": 0.0018457556143403053,
+      "absolute_ratio_error": 3.575940392321758e-10,
+      "relative_ratio_error": 1.937385999173854e-07
+    },
+    {
+      "layer": "f6",
+      "input_scale": 0.06562242447860597,
+      "weight_scale": 0.0036714037102977123,
+      "bias_and_accumulator_scale": 0.00024092641270948538,
+      "zero_point": 0,
+      "weight_max_error": 0.001835369394989468,
+      "bias_max_error": 0.00012019687485317725,
+      "output_scale": 0.08550340742576776,
+      "calibration_threshold": 10.858932743072506,
+      "multiplier": 3025526,
+      "shift": 30,
+      "ratio": 0.002817740485005262,
+      "represented_ratio": 0.0028177406638860703,
+      "absolute_ratio_error": 1.788808081694404e-10,
+      "relative_ratio_error": 6.348377684934542e-08
+    },
+    {
+      "layer": "output",
+      "input_scale": 0.08550340742576776,
+      "weight_scale": 0.0031121115046223316,
+      "bias_and_accumulator_scale": 0.00026609613793414236,
+      "zero_point": 0,
+      "weight_max_error": 0.0015542420345967256,
+      "bias_max_error": 0.0001288673181974176,
+      "output_scale": 0.00026609613793414236,
+      "multiplier": null,
+      "shift": null,
+      "common_logit_scale": true
+    }
+  ],
+  "bounds": {
+    "c1": {
+      "input_max": 255,
+      "per_channel": [
+        176153,
+        191450,
+        231814,
+        246348,
+        255067,
+        212184
+      ],
+      "max": 255067,
+      "max_abs_bias": 7462,
+      "int32_safe": true,
+      "covers_partial_sums": true,
+      "requant_int64_bound": 426376838886,
+      "int64_safe": true
+    },
+    "c3": {
+      "input_max": 127,
+      "per_channel": [
+        421635,
+        507977,
+        382270,
+        439675,
+        448353,
+        460809,
+        454225,
+        487986,
+        401165,
+        483374,
+        493060,
+        466538,
+        501712,
+        472824,
+        453443,
+        530816
+      ],
+      "max": 530816,
+      "max_abs_bias": 3348,
+      "int32_safe": true,
+      "covers_partial_sums": true,
+      "requant_int64_bound": 1389326696192,
+      "int64_safe": true
+    },
+    "c5": {
+      "input_max": 127,
+      "per_channel": [
+        632837,
+        766462,
+        929566,
+        715526,
+        290282,
+        774731,
+        701880,
+        777586,
+        610118,
+        486868,
+        735852,
+        548711,
+        696537,
+        691112,
+        266694,
+        715145,
+        796476,
+        762649,
+        712934,
+        308405,
+        691358,
+        700521,
+        783071,
+        274853,
+        708669,
+        759172,
+        737367,
+        868780,
+        756477,
+        746817,
+        803657,
+        851095,
+        908437,
+        753565,
+        680452,
+        337216,
+        809765,
+        270888,
+        712002,
+        288668,
+        303696,
+        736005,
+        1054752,
+        276191,
+        711839,
+        671278,
+        271635,
+        837134,
+        869484,
+        818165,
+        777955,
+        751276,
+        708792,
+        759632,
+        824239,
+        726342,
+        644753,
+        728263,
+        771273,
+        300833,
+        725552,
+        625383,
+        343367,
+        351425,
+        353957,
+        286056,
+        852556,
+        734657,
+        291257,
+        273412,
+        781033,
+        635402,
+        710432,
+        818708,
+        742946,
+        757782,
+        771054,
+        746373,
+        442494,
+        427181,
+        305827,
+        660434,
+        633167,
+        747579,
+        855566,
+        782314,
+        687229,
+        774365,
+        697355,
+        717718,
+        692319,
+        748229,
+        278322,
+        883278,
+        794743,
+        949602,
+        727409,
+        716383,
+        313261,
+        698209,
+        747938,
+        802721,
+        289853,
+        673689,
+        298814,
+        713810,
+        681050,
+        286394,
+        371929,
+        671884,
+        714885,
+        344627,
+        779828,
+        308345,
+        849873,
+        833668,
+        685279,
+        896476,
+        746546,
+        695794
+      ],
+      "max": 1054752,
+      "max_abs_bias": 1341,
+      "int32_safe": true,
+      "covers_partial_sums": true,
+      "requant_int64_bound": 2090912943392,
+      "int64_safe": true
+    },
+    "f6": {
+      "input_max": 127,
+      "per_channel": [
+        313713,
+        330179,
+        305783,
+        295505,
+        267247,
+        329915,
+        306465,
+        335376,
+        330861,
+        275573,
+        346119,
+        337791,
+        330094,
+        274013,
+        203912,
+        253212,
+        320070,
+        337428,
+        284724,
+        339320,
+        325654,
+        308716,
+        319441,
+        336142,
+        312425,
+        274003,
+        253212,
+        286645,
+        268398,
+        272140,
+        238810,
+        296689,
+        315219,
+        302916,
+        324646,
+        188285,
+        287565,
+        300254,
+        310867,
+        286371,
+        287640,
+        315928,
+        342358,
+        296902,
+        299439,
+        323079,
+        190690,
+        281537,
+        268163,
+        283859,
+        353479,
+        223577,
+        292512,
+        314787,
+        328885,
+        189097,
+        285757,
+        209390,
+        207927,
+        265711,
+        291420,
+        281368,
+        290638,
+        290557,
+        285007,
+        296831,
+        233537,
+        261048,
+        289919,
+        203039,
+        303154,
+        300172,
+        286402,
+        286125,
+        347341,
+        311296,
+        283729,
+        359359,
+        203886,
+        348442,
+        334836,
+        314962,
+        305844,
+        289029
+      ],
+      "max": 359359,
+      "max_abs_bias": 798,
+      "int32_safe": true,
+      "covers_partial_sums": true,
+      "requant_int64_bound": 1087786868746,
+      "int64_safe": true
+    },
+    "output": {
+      "input_max": 127,
+      "per_channel": [
+        354488,
+        342167,
+        327311,
+        318410,
+        373269,
+        299518,
+        362826,
+        346644,
+        322648,
+        308573
+      ],
+      "max": 373269,
+      "max_abs_bias": 622,
+      "int32_safe": true,
+      "covers_partial_sums": true
+    }
+  },
+  "tensors": {
+    "c1_weight": {
+      "shape": [
+        6,
+        1,
+        5,
+        5
+      ],
+      "dtype": "int8",
+      "bytes": 150
+    },
+    "c1_bias": {
+      "shape": [
+        6
+      ],
+      "dtype": "int32",
+      "bytes": 24
+    },
+    "c1_input_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "c1_weight_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "c1_accumulator_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "c1_output_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "c1_multiplier": {
+      "shape": [],
+      "dtype": "int32",
+      "bytes": 4
+    },
+    "c1_shift": {
+      "shape": [],
+      "dtype": "int32",
+      "bytes": 4
+    },
+    "c3_weight": {
+      "shape": [
+        16,
+        6,
+        5,
+        5
+      ],
+      "dtype": "int8",
+      "bytes": 2400
+    },
+    "c3_bias": {
+      "shape": [
+        16
+      ],
+      "dtype": "int32",
+      "bytes": 64
+    },
+    "c3_input_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "c3_weight_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "c3_accumulator_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "c3_output_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "c3_multiplier": {
+      "shape": [],
+      "dtype": "int32",
+      "bytes": 4
+    },
+    "c3_shift": {
+      "shape": [],
+      "dtype": "int32",
+      "bytes": 4
+    },
+    "c5_weight": {
+      "shape": [
+        120,
+        16,
+        5,
+        5
+      ],
+      "dtype": "int8",
+      "bytes": 48000
+    },
+    "c5_bias": {
+      "shape": [
+        120
+      ],
+      "dtype": "int32",
+      "bytes": 480
+    },
+    "c5_input_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "c5_weight_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "c5_accumulator_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "c5_output_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "c5_multiplier": {
+      "shape": [],
+      "dtype": "int32",
+      "bytes": 4
+    },
+    "c5_shift": {
+      "shape": [],
+      "dtype": "int32",
+      "bytes": 4
+    },
+    "f6_weight": {
+      "shape": [
+        84,
+        120
+      ],
+      "dtype": "int8",
+      "bytes": 10080
+    },
+    "f6_bias": {
+      "shape": [
+        84
+      ],
+      "dtype": "int32",
+      "bytes": 336
+    },
+    "f6_input_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "f6_weight_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "f6_accumulator_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "f6_output_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "f6_multiplier": {
+      "shape": [],
+      "dtype": "int32",
+      "bytes": 4
+    },
+    "f6_shift": {
+      "shape": [],
+      "dtype": "int32",
+      "bytes": 4
+    },
+    "output_weight": {
+      "shape": [
+        10,
+        84
+      ],
+      "dtype": "int8",
+      "bytes": 840
+    },
+    "output_bias": {
+      "shape": [
+        10
+      ],
+      "dtype": "int32",
+      "bytes": 40
+    },
+    "output_input_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "output_weight_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    },
+    "output_accumulator_scale": {
+      "shape": [],
+      "dtype": "float64",
+      "bytes": 8
+    }
+  },
+  "layouts": {
+    "input": "NCHW",
+    "convolution": "OIHW, cross-correlation, stride1, no convolution pad",
+    "linear": "out,in",
+    "flatten": "C then H then W row-major"
+  },
+  "rounding": {
+    "parameters": "nearest; ties away from zero",
+    "requant": "nonnegative nearest; half rounds upward; shift0 has zero rounding offset"
+  },
+  "activation": "ReLU -> requant -> saturation 0..127 -> max pool where applicable",
+  "pooling": "2x2 stride2 maximum; preserves scale and zero point",
+  "accumulator": "checked INT64 Python reference; static bounds prove INT32 including partial sums",
+  "requant": "INT64 multiply before rounding offset and right shift",
+  "output": "INT32 logits share output accumulator scale; first-index argmax, no softmax",
+  "model_npz_sha256": "e28ba5a41626d7d61d06269b4c1dc92b8afac7e413f2161e0ae18d22c918caa0",
+  "total_weight_bias_bytes": 62414,
+  "no_c_rtl_mem": true
+}

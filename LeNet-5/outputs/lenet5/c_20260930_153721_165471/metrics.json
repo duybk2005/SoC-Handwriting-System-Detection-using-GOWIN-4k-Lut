@@ -1,0 +1,18 @@
+{
+  "status": "completed",
+  "test_count": 10000,
+  "c_correct": 9894,
+  "c_accuracy_percent": 98.94,
+  "python_integer_accuracy_percent": 98.94,
+  "float_accuracy_percent": 98.99,
+  "c_python_class_agreement": 10000,
+  "c_python_mismatch_elements": 0,
+  "all_15_tensors_compared_full_test": true,
+  "frozen_stage3_logits_classes_match": true,
+  "workspace_bytes": 35304,
+  "weight_bias_bytes": 62414,
+  "binary_sha256": "f25818cb36e842f40e18ae5e83b4ee746a746b06945d110f64bc53ef145f6234",
+  "total_pipeline_seconds": 18.55695779999951,
+  "scope": "Stage 4 C on CPU; no RTL/mem/FPGA/OV2640/Word",
+  "artifact_audit_sha256": "d02e6db417cc5c93d63a9a48a3698b8be22711e0c56741c7ad690b4b9fda5f3c"
+}

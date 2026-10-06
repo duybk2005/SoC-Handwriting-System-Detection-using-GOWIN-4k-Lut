@@ -1,0 +1,181 @@
+{
+  "passed": true,
+  "test_count": 10000,
+  "index_meaning": "sample_index is official MNIST test index 0..9999",
+  "tensors": {
+    "input": {
+      "compared_images": 10000,
+      "compared_elements": 10240000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "c1_acc": {
+      "compared_images": 10000,
+      "compared_elements": 47040000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "c1_activation": {
+      "compared_images": 10000,
+      "compared_elements": 47040000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "s2": {
+      "compared_images": 10000,
+      "compared_elements": 11760000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "c3_acc": {
+      "compared_images": 10000,
+      "compared_elements": 16000000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "c3_activation": {
+      "compared_images": 10000,
+      "compared_elements": 16000000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "s4": {
+      "compared_images": 10000,
+      "compared_elements": 4000000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "c5_acc": {
+      "compared_images": 10000,
+      "compared_elements": 1200000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "c5_activation": {
+      "compared_images": 10000,
+      "compared_elements": 1200000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "flatten": {
+      "compared_images": 10000,
+      "compared_elements": 1200000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "f6_acc": {
+      "compared_images": 10000,
+      "compared_elements": 840000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "f6_activation": {
+      "compared_images": 10000,
+      "compared_elements": 840000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "output_acc": {
+      "compared_images": 10000,
+      "compared_elements": 100000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "logits": {
+      "compared_images": 10000,
+      "compared_elements": 100000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "predictions": {
+      "compared_images": 10000,
+      "compared_elements": 10000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    }
+  },
+  "versus_stage3_saved_predictions": {
+    "logits": {
+      "compared_images": 10000,
+      "compared_elements": 100000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    },
+    "predictions": {
+      "compared_images": 10000,
+      "compared_elements": 10000,
+      "mismatch_elements": 0,
+      "mismatched_images": 0,
+      "max_absolute_difference": 0,
+      "first_mismatch": null
+    }
+  },
+  "c_correct": 9894,
+  "python_correct": 9894,
+  "c_accuracy_percent": 98.94,
+  "class_agreement": 10000,
+  "timing": {
+    "full_verification_pipeline_seconds": 16.691614800000025,
+    "python_reference_seconds": 8.560347199978423,
+    "c_inference_ctypes_and_trace_copy_seconds": 5.67401749999226,
+    "comparison_and_result_copy_seconds": 2.4478523999969184,
+    "scope": "CPU pipeline timings; C kernel and ctypes overhead not measured separately; not FPGA timing"
+  },
+  "build_manifest_sha256": "7ee9fcde4cef7859beaf2f4f30ad325a0d413eb0c64be83c45ceae6b3f44508d",
+  "binary_sha256": "f25818cb36e842f40e18ae5e83b4ee746a746b06945d110f64bc53ef145f6234",
+  "exported_source_sha256": {
+    "c_inference.c": "1180157b8f959a9575abf0ac02a22bb7e6b367d2d585951431be00beda4c0f89",
+    "c_inference.h": "6c343d4439e6ad5e03b2ce83472986e33a13873fb77286128b3202a59ab8b3e7",
+    "model_params.c": "04c7744f17a266aacef28e32596e88015ba2b7dead7928cf7dafdedde6fccf66",
+    "model_params.h": "95c1cfa4223acf4b2b37bdb4ac9ccfa3113d37ad99a4a08617d3ed44035deacf"
+  },
+  "input_sha256": {
+    "lenet5_int8.npz": "e28ba5a41626d7d61d06269b4c1dc92b8afac7e413f2161e0ae18d22c918caa0",
+    "model_metadata.json": "168d88136c8ab23518faeb1814fadca27998bcb0d82c7165249bcbb74c811cc3",
+    "selection.json": "e71b4023e6276aea0da1d8bc5b344f3b5482f47aca84f07ac9ec96ebabb5e5d5",
+    "bounds.json": "5699de445494ed97bacf7a2f6a5f75c94995058d0729ea3edca455703feb5e33",
+    "scales.csv": "a9fd01006e69b681f16d01edfac9defa2d6f3f7eda543135d6bf178b15251504",
+    "test_predictions.npz": "306edf7a97f70c47370d5eaa39db20bb9cca45f0e84f7a1753cf2ea57322b8d9",
+    "reference.npz": "661055aa721536a43128525e36935bf786c8a4d9e49b6ccf374af3d2aaabd8b2",
+    "reference_manifest.json": "c9deec93280fa6f9ae76315ffaaa64f0edfb18da61a371bf43538196279827c7",
+    "plan.json": "0da56fd7ef78eb6ce980e34092062b05805c3c284936970ce9bca724d540139e"
+  },
+  "dataset_sha256": {
+    "train-images-idx3-ubyte": "ba891046e6505d7aadcbbe25680a0738ad16aec93bde7f9b65e87a2fc25776db",
+    "train-labels-idx1-ubyte": "65a50cbbf4e906d70832878ad85ccda5333a97f0f4c3dd2ef09a8a9eef7101c5",
+    "t10k-images-idx3-ubyte": "0fa7898d509279e482958e8ce81c8e77db3f2f8254e26661ceb7762c4d494ce7",
+    "t10k-labels-idx1-ubyte": "ff7bcfd416de33731a308c3f266cc351222c34898ecbeaf847f06e48f7ec33f2"
+  }
+}
