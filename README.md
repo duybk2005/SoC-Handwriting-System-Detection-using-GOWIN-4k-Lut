@@ -139,18 +139,12 @@ The Cortex-M3 controls and interacts with the FPGA fabric via standard 32-bit me
 
 You can build the MCU firmware using either **Gowin MCU Designer (GMD)** or the CLI:
 
-#### Using Command Line / Make:
-
-```bash
-cd "Debug"
-make all
-```
 
 #### Using Gowin MCU Designer (GMD):
 
-1. Open GMD and import the `user_image` project directory.
-2. Select **Project $\rightarrow$ Build Project** (or build configuration `Debug`).
-3. The build generates:
+
+1. Select **Project $\rightarrow$ Build Project** (or build configuration `Debug`).
+2. The build generates:
    - `Debug/user_image_c.elf`
    - `Debug/user_image_c.bin` (Binary image for flash programming)
 
@@ -160,44 +154,15 @@ make all
 
 The GW1NSR-4C chip contains both FPGA SRAM / Embedded Flash and MCU Embedded Flash.
 
-### Step 1: Connect the Board
 
-1. Plug the OV2640 camera into the Tang Nano 4K DVP slot.
-2. Connect the HDMI port of the board to your monitor.
-3. Connect the Tang Nano 4K to your computer via USB-C.
-
----
-
-### Step 2: Program FPGA Bitstream
+### Step 1: Program FPGA Bitstream
 
 1. Open **Gowin Programmer**.
 2. Click **Scan Device**. You should see `GW1NSR-4C` detected.
-3. Under the **Operation** column, configure the programming mode:
-   - **Volatile Testing (SRAM Mode)**:
-     - Access Mode: `SRAM Mode`
-     - Operation: `SRAM Program`
-     - File: Browse and select `user_image_fpga/impl/pnr/user_image_fpga.fs`.
-   - **Permanent Flashing (Flash Mode)**:
-     - Access Mode: `embFlash Mode`
-     - Operation: `embFlash Erase, Program`
-     - File: Browse and select `user_image_fpga/impl/pnr/user_image_fpga.fs`.
-4. Click **Program / Configure** (play icon) and wait until completion (Status: `100% / Save Success`).
-
----
-
-### Step 3: Flash MCU Firmware Binary
-
-1. In **Gowin Programmer**, click **Edit $\rightarrow$ Configure Device** (or double-click the device operation).
-2. Configure MCU programming options:
-   - Access Mode: `MCU Mode` (or `embFlash Mode` depending on Programmer version).
-   - Operation: `embFlash Erase, Program` (targeting MCU Flash address `0x00000000`).
-   - File: Browse and select `Debug/user_image_c.bin`.
-3. Click **Program / Configure** to flash the firmware into the Cortex-M3 internal flash.
-4. Press the hardware **Reset** button on the Tang Nano 4K board to boot the new firmware.
-
-*(Alternatively, GMD's built-in debugger with OpenOCD/JTAG can be used to directly download and run `user_image_c.elf` during development).*
-
----
+3. Under the **Operation** column, configure the programming mode choose **MCU mode" below choose the longest setence (Erase, Program... i dont remember :v _)
+        - The the deafault bit stream file remain unchange
+        - The next line, you have to choose the path to the bin file (which had been compiled in C before)
+        - Then run :v
 
 ## 7. Operational Verification & Display Diagnostics
 
