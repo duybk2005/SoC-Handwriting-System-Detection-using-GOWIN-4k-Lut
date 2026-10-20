@@ -10,7 +10,7 @@
 // PIPELINE = 1 : them 1 tang thanh ghi sau bo nhan (prod_q) -> bo nhan 8x8
 //                map vao DSP/MULT cua Gowin co thanh ghi ra, duong cong
 //                (adder 32-bit) tach rieng. Latency them = 1 chu ky.
-// PIPELINE = 0 : nhan + cong trong cung 1 chu ky (van dat 50 MHz du dang ke).
+// PIPELINE = 0 : nhan + cong trong cung 1 chu ky.
 //
 // Uu tien dieu khien: clear > load_bias > enable
 //==============================================================================
