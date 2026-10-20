@@ -1,84 +1,72 @@
-# GEMM Array – 16-lane Output-Stationary MAC cho LeNet-5 (Gowin Tang Nano 4K)
+# GEMM Array (16-lane INT8 MAC)
 
-Module Verilog-2001 tổng hợp được (synthesizable) thực hiện **một block nhân ma trận 1×16** theo kiểu **output-stationary**, dùng làm lõi tính toán trong bộ tăng tốc LeNet-5 trên FPGA **Gowin GW1NSR-LV4CQN48PC7I6** (Tang Nano 4K).
+Khối **GEMM Array** nằm trong bộ CORE của bộ tăng tốc suy luận CNN (kiểu LeNet-5). Khối này dùng chung cho phép chập và phép nhân ma trận–vector, viết bằng Verilog.
 
-## 1. Ý tưởng
-
-Phép nhân ma trận tổng quát (GEMM) của một layer:
+## Vai trò trong kiến trúc
 
 ```
-A[M×N] = W[M×K] · P[K×N] + B[M] · 1ᵀ[N]
+HyperRAM -> DMA -> [Bias | Broadcast | Ping-pong Element] -> GEMM array -> Out_buffer
+                                                                ^   |
+                                                         clear  |   | tick
+                                                           controller
 ```
 
-Ma trận đầu ra được chia thành các **block rộng 16 pixel**. Với mỗi block, module chạy **K chu kỳ**:
+GEMM array thực hiện hai dạng phép tính:
 
-- `broadcast_in` (INT8): một trọng số `w[0,i]`, **phát chung cho cả 16 lane**, giữ cố định trong 1 chu kỳ.
-- `element_in` (16 × INT8): 16 phần tử kích hoạt `p[i,0..15]`, đưa vào đồng thời mỗi chu kỳ.
-- Mỗi lane có **một bộ cộng dồn INT32 riêng** (kết quả "đứng yên" trong lane → *output-stationary*), khởi tạo bằng giá trị bias.
+- `A[MxN] = W[MxK] * P[KxN] + B[M]·1ᵀ` (phase 1, 2: chập, N lớn, M ≤ 16)
+- `A[M] = W[MxK] * P[Kx1] + B[M]` (phase 3, 4, 5: fully-connected, N = 1)
 
-```
-acc[j] <= acc[j] + broadcast_in * element_in[j]      (j = 0..15, lặp K lần)
-```
+Mỗi nhịp clock, khối nhận **1 phần tử broadcast** nhân song song với **16 phần tử element**, rồi cộng dồn vào **16 thanh ghi tích lũy INT32**.
 
-Sau K chu kỳ, `acc[0..15]` chính là 16 kết quả đầu ra INT32 của block.
+## Giao tiếp
 
-## 2. Sơ đồ khối
-
-```
-               bias_in[511:0] (16 x INT32)
-                      │
- broadcast_in[7:0] ───┼──────────────┐
-                      ▼              ▼
- element_in[127:0] ► ┌─────────────────────────┐
-  (16 x INT8)        │  16 x MAC lane          │──► result_out[511:0]
- clear ─────────────►│  acc[j] += w * p[j]     │     (16 x INT32)
- k_length[15:0] ────►│  + bộ đếm k_cnt         │──► tick
- clk, rst_n ────────►└─────────────────────────┘
-```
-
-## 3. Giao diện (ports)
-
-| Tín hiệu | Hướng | Độ rộng | Mô tả |
+| Cổng | Hướng | Độ rộng | Mô tả |
 |---|---|---|---|
-| `clk` | in | 1 | Clock hệ thống (thường 50 MHz) |
-| `rst_n` | in | 1 | Reset mức thấp. Assert bất đồng bộ, nhả đồng bộ với clk |
-| `clear` | in | 1 | Từ Controller. Khi = 1: nạp lại bias vào accumulator, đưa `k_cnt` về 0, bắt đầu block mới |
-| `k_length` | in | 16 | Số chu kỳ cộng dồn K của mỗi block (vd. 25 cho conv1) |
-| `bias_in` | in | 512 | 16 bias INT32, lane *j* = `bias_in[32*j +: 32]` |
-| `broadcast_in` | in | 8 | Trọng số INT8 có dấu, dùng chung cho 16 lane |
-| `element_in` | in | 128 | 16 phần tử INT8 có dấu, lane *j* = `element_in[8*j +: 8]` |
-| `tick` | out | 1 | Xung 1 chu kỳ khi đã đủ K chu kỳ cộng dồn |
-| `result_out` | out | 512 | 16 kết quả INT32, lane *j* = `result_out[32*j +: 32]` |
+| `clk` | in | 1 | Clock |
+| `rst_n` | in | 1 | Reset bất đồng bộ, active low |
+| `clear` | in | 1 | Từ controller: nạp lại bias vào thanh ghi tích lũy, xóa bộ đếm n |
+| `bias` | in | 16 × 32 | `bias(16) INT32` |
+| `broadcast` | in | 8 (signed) | `broadcast INT8` |
+| `element` | in | 16 × 8 | `element(16) INT8` từ Ping-pong buffer |
+| `tick` | out | 1 | Tới controller: đã xong n bước, đảo vùng Ping ↔ Pong |
+| `result` | out | 16 × 32 | 16 giá trị tích lũy INT32 tới Out_buffer |
 
-> **Vì sao `k_length` là cổng (port) chứ không phải parameter?**
-> K thay đổi theo từng layer của LeNet-5 (conv1: 25, conv2: 150, fc1: 400, …), nên để cấu hình lúc chạy sẽ linh hoạt hơn. Nếu muốn cố định, nối cứng `k_length` với `16'd25`.
+Các bus được gộp phẳng (flatten): lane `i` nằm ở `bus[i*W +: W]`.
 
-## 4. Giao thức / Timing
+## Tham số
 
-| Chu kỳ | `clear` | Dữ liệu trên bus | Việc xảy ra ở cạnh lên clk kế tiếp |
-|---|---|---|---|
-| 0 | **1** | (không quan trọng) | `acc <= bias`, `k_cnt <= 0` |
-| 1 | 0 | cặp `k = 0` | `acc += w·p` |
-| 2 | 0 | cặp `k = 1` | `acc += w·p` |
-| … | 0 | … | … |
-| K | 0 | cặp `k = K-1` | `acc += w·p` **và** `tick <= 1` |
-| K+1 | 0 | bất kỳ | `tick <= 0`, `acc` được **giữ nguyên** |
+| Tham số | Mặc định | Ý nghĩa |
+|---|---|---|
+| `LANES` | 16 | Số lane MAC song song |
+| `N_STEP` | 4 | Số bước tích lũy giữa hai lần `tick` (n-loop) |
 
-Điểm cần lưu ý:
+## Nguyên lý hoạt động
 
-1. `bias_in` và `k_length` phải hợp lệ tại thời điểm `clear = 1`.
-2. Cặp (trọng số, phần tử) đầu tiên phải có mặt trên bus **ngay chu kỳ đầu tiên sau khi `clear` hạ xuống**. Mỗi chu kỳ sau đó là một cặp mới, tổng cộng K cặp. Controller / ping-pong buffer cần canh đúng nhịp này.
-3. `tick` là thanh ghi, lên **cùng cạnh clock** với lần cộng dồn cuối. Nghĩa là khi `tick = 1` thì `result_out` đã là giá trị cuối cùng, Controller có thể phát `save` / `address` sang `Out_buffer` luôn.
-4. Sau `tick`, mảng ngừng cộng dồn và giữ `result_out` cho đến lần `clear` tiếp theo.
-5. Nếu `k_length = 0` thì được coi như `k_length = 1`.
+1. **`clear = 1`**: `acc[i] <= bias[i]`, bộ đếm n về 0 và `tick` về 0. Controller bật `clear` trước mỗi vòng K-loop.
+2. **Tích lũy**: mỗi nhịp sau `clear`, `acc[i] <= acc[i] + broadcast * element[i]`. Tích INT8×INT8 là INT16, được mở rộng dấu lên INT32 trước khi cộng.
+3. **`tick`**: sau mỗi `N_STEP` nhịp tích lũy, `tick` lên 1 trong một chu kỳ. Controller dùng xung này để đảo vùng Ping/Pong của Element buffer. Lúc đó `result` đã chứa kết quả của đủ n bước.
+4. **Xuất kết quả**: sau khi đủ K bước, controller bật `save` và cấp `address` để ghi `result` vào `Out_buffer`. Việc này nằm ngoài khối GEMM.
 
-## 5. Chi tiết cài đặt
+## Lưu ý khi sử dụng
 
-- **Nhân có dấu:** `wire signed [15:0] prod = w_s * elem_s;` (INT8 × INT8 → INT16, tối đa +16384 khi (-128)·(-128), vừa đủ trong 16 bit có dấu).
-- **Mở rộng dấu:** `acc` và `prod` đều khai báo `signed` nên phép `acc + prod` tự động sign-extend `prod` lên 32 bit.
-- **Độ rộng accumulator:** INT32 đủ cho K lớn (mỗi tích tối đa 2¹⁴, K đến vài chục nghìn vẫn không tràn nếu bias không quá lớn).
-- **16 lane** được tạo bằng `generate for`, mỗi lane gồm: bộ nhân + thanh ghi `acc` + gán `result_out`.
-- **Bộ điều khiển** gồm `k_cnt` (đếm 0 → K-1), cờ `running` (đang tính) và `tick`.
-- Bộ nhân 8×8 nhiều khả năng được ánh xạ vào khối nhân cứng (DSP/MULT) của GW1NSR-4. Hãy kiểm tra trong báo cáo tổng hợp (synthesis report) của Gowin EDA.
+- Sơ đồ không có cổng enable, nên khối tích lũy liên tục sau `clear`. Controller cần bật `save` đúng thời điểm sau bước K, hoặc cho `broadcast = 0` khi rảnh để `acc` không đổi.
+- Dữ liệu được hiểu là **signed INT8**. Nếu cần UINT8 thì phải sửa phép nhân.
+- `result` là giá trị thanh ghi tích lũy trực tiếp, chưa qua requantize hay activation.
 
+## Cấu trúc file
 
+| File | Mô tả |
+|---|---|
+| `gemm_array.v` | RTL của khối GEMM array |
+| `tb_gemm_array.v` | Testbench tự kiểm tra (in `PASS` hoặc `FAIL`) |
+
+## Mô phỏng
+
+Ví dụ với Icarus Verilog:
+
+```bash
+iverilog -o sim gemm_array.v tb_gemm_array.v
+vvp sim
+```
+
+Testbench nạp bias, chạy 8 bước tích lũy với `broadcast = 3`, kiểm tra 16 lane khớp giá trị kỳ vọng và kiểm tra `tick` xuất hiện đúng 2 lần.
