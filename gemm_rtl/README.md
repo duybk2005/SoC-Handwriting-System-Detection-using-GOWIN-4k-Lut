@@ -1,7 +1,6 @@
 # 16-Lane GEMM Core (SystemVerilog) cho CNN LeNet-5 trên Tang Nano 4K
 
-Lõi nhân ma trận tổng quát (GEMM - General Matrix Multiplication) 16 lane, kiến trúc **Output-Stationary**, viết bằng SystemVerilog-2012 synthesizable. Mục tiêu: board **Sipeed Tang Nano 4K** (Gowin **GW1NSR-LV4C**), xung nhịp **50 MHz**.
-
+Lõi nhân ma trận tổng quát (GEMM - General Matrix Multiplication) 16 lane, kiến trúc **Output-Stationary**, viết bằng SystemVerilog-2012 synthesizable. Mục tiêu: board **Sipeed Tang Nano 4K** (Gowin **GW1NSR-LV4C**).
 Lõi tính một block của phép toán:
 
 ```
