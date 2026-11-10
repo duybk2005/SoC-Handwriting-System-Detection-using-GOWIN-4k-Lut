@@ -1,0 +1,57 @@
+# do run_tb.do 20 50 3 gemm_lat20_gap50.wlf 
+# 0
+# 0
+# 1
+# gemm.wlf
+# 20
+# 50
+# 3
+# gemm_lat20_gap50.wlf
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module gemm_array
+# -- Compiling module bias_buf
+# -- Compiling module bcast_buf
+# -- Compiling module elem_pingpong
+# -- Compiling module out_buffer
+# -- Compiling module gemm_arb
+# -- Compiling module gemm_ldmux
+# -- Compiling module gemm_dma
+# -- Compiling module gemm_ctrl
+# -- Compiling module gemm_core
+# -- Compiling module hyperram_model
+# -- Compiling module tb_gemm_array
+# -- Compiling module tb_gemm
+# 
+# Top level modules:
+# 	tb_gemm_array
+# 	tb_gemm
+# vsim +HR_LAT=20 +HR_GAP=50 +SEED=3 -wlf gemm_lat20_gap50.wlf -novopt work.tb_gemm 
+# Loading work.tb_gemm
+# Loading work.gemm_core
+# Loading work.gemm_ctrl
+# Loading work.gemm_arb
+# Loading work.gemm_ldmux
+# Loading work.bias_buf
+# Loading work.bcast_buf
+# Loading work.gemm_dma
+# Loading work.elem_pingpong
+# Loading work.gemm_array
+# Loading work.out_buffer
+# Loading work.hyperram_model
+# [HR] model nap ../../LeNet/training/outputs/lenet5/mem_20260930_173742_222887/model_image.mem, HR_LAT=20, HR_GAP=50%, SEED=3
+# [PASS] T1a Phase5 H4 ngau nhien 0..127 : 10/10 phan tu dung, 5476 chu ky
+# [PASS] T1b Phase5 H4 toan 127 : 10/10 phan tu dung, 5319 chu ky
+# [PASS] T1c Phase5 H4 toan 0 (ra dung bias) : 10/10 phan tu dung, 5315 chu ky
+# [PASS] T2  Phase4 H3 ngau nhien : 84/84 phan tu dung, 62106 chu ky
+# [PASS] T3  Phase3 V ngau nhien : 120/120 phan tu dung, 290478 chu ky
+# [PASS] T4  Phase2 P2 ngau nhien + start gia : 1600/1600 phan tu dung, 758904 chu ky
+# [PASS] T5a Phase1 P1 = im2col anh that (mau 0) : 4704/4704 phan tu dung, 354549 chu ky
+# [PASS] T5b Phase1 P1 ngau nhien 0..255 : 4704/4704 phan tu dung, 356606 chu ky
+# [PASS] T5c Phase1 P1 toan 255 (kiem UINT8) : 4704/4704 phan tu dung, 355906 chu ky
+# [PASS] T6  Phase5 sau Phase1 : 10/10 phan tu dung, 5483 chu ky
+# --------------------------------------------------
+# HyperRAM: 54287 burst, 659058 byte
+# KET QUA: TAT CA 10 TEST PASS
+# --------------------------------------------------
+# ** Note: $finish    : ../tb/tb_gemm.v(316)
+#    Time: 44086920 ns  Iteration: 1  Instance: /tb_gemm

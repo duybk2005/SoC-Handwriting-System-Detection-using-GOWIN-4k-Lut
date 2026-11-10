@@ -1,0 +1,8 @@
+# Reading C:/altera/13.0sp1/modelsim_ase/tcl/vsim/pref.tcl 
+# vsim -do {do wave.do; wave zoom range 0us 50us} -gui -view gemm_lat0.wlf 
+# gemm_lat0.wlf opened as dataset "gemm_lat0"
+# do wave.do 
+# 0 ps
+# 21011172 ns
+#  wave zoom range 0us 50us 
+# {0 ps} {50 us}

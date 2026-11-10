@@ -1,0 +1,65 @@
+library verilog;
+use verilog.vl_types.all;
+entity gemm_ctrl is
+    generic(
+        C1_W            : vl_logic_vector(23 downto 0) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0);
+        C1_B            : vl_logic_vector(23 downto 0) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi0, Hi1, Hi1, Hi0, Hi0, Hi0);
+        C3_W            : vl_logic_vector(23 downto 0) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi1, Hi1, Hi0, Hi0, Hi0, Hi0);
+        C3_B            : vl_logic_vector(23 downto 0) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi0, Hi0, Hi0);
+        C5_W            : vl_logic_vector(23 downto 0) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0, Hi0, Hi0);
+        C5_B            : vl_logic_vector(23 downto 0) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi1, Hi0, Hi0, Hi0, Hi1, Hi0, Hi1, Hi1, Hi1, Hi0, Hi1, Hi0, Hi0, Hi0, Hi0);
+        F6_W            : vl_logic_vector(23 downto 0) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi1, Hi0, Hi0, Hi0, Hi1, Hi1, Hi1, Hi1, Hi0, Hi1, Hi1, Hi0, Hi0, Hi0, Hi0);
+        F6_B            : vl_logic_vector(23 downto 0) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi1, Hi1, Hi0, Hi1, Hi1, Hi1, Hi1, Hi0, Hi0, Hi0, Hi1, Hi0, Hi0, Hi0, Hi0);
+        OUT_W           : vl_logic_vector(23 downto 0) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi1, Hi1, Hi1, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi1, Hi0, Hi0, Hi0, Hi0, Hi0);
+        OUT_B           : vl_logic_vector(23 downto 0) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi1, Hi1, Hi1, Hi0, Hi0, Hi1, Hi1, Hi1, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0, Hi0);
+        ACT_BASE        : vl_logic_vector(23 downto 0) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0)
+    );
+    port(
+        clk             : in     vl_logic;
+        rst_n           : in     vl_logic;
+        start           : in     vl_logic;
+        phase           : in     vl_logic_vector(2 downto 0);
+        done            : out    vl_logic;
+        conv_mode       : out    vl_logic;
+        cfg_m           : out    vl_logic_vector(15 downto 0);
+        cfg_k           : out    vl_logic_vector(15 downto 0);
+        cfg_n           : out    vl_logic_vector(15 downto 0);
+        cfg_wbase       : out    vl_logic_vector(23 downto 0);
+        cfg_actbase     : out    vl_logic_vector(23 downto 0);
+        ob_pp           : out    vl_logic;
+        ob_q            : out    vl_logic_vector(11 downto 0);
+        init            : out    vl_logic;
+        bias_req        : out    vl_logic;
+        bias_addr       : out    vl_logic_vector(23 downto 0);
+        bias_len        : out    vl_logic_vector(15 downto 0);
+        bias_gnt        : in     vl_logic;
+        bias_we         : in     vl_logic;
+        bc_req          : out    vl_logic;
+        bc_addr         : out    vl_logic_vector(23 downto 0);
+        bc_len          : out    vl_logic_vector(15 downto 0);
+        bc_gnt          : in     vl_logic;
+        bc_we           : in     vl_logic;
+        bc_waddr        : out    vl_logic_vector(8 downto 0);
+        clear           : out    vl_logic;
+        mac_en          : out    vl_logic;
+        tick            : in     vl_logic;
+        busy            : in     vl_logic;
+        bc_raddr        : out    vl_logic_vector(8 downto 0);
+        elem_valid      : in     vl_logic_vector(1 downto 0);
+        save            : out    vl_logic;
+        address         : out    vl_logic_vector(11 downto 0);
+        lane_sel        : out    vl_logic_vector(3 downto 0)
+    );
+    attribute mti_svvh_generic_type : integer;
+    attribute mti_svvh_generic_type of C1_W : constant is 2;
+    attribute mti_svvh_generic_type of C1_B : constant is 2;
+    attribute mti_svvh_generic_type of C3_W : constant is 2;
+    attribute mti_svvh_generic_type of C3_B : constant is 2;
+    attribute mti_svvh_generic_type of C5_W : constant is 2;
+    attribute mti_svvh_generic_type of C5_B : constant is 2;
+    attribute mti_svvh_generic_type of F6_W : constant is 2;
+    attribute mti_svvh_generic_type of F6_B : constant is 2;
+    attribute mti_svvh_generic_type of OUT_W : constant is 2;
+    attribute mti_svvh_generic_type of OUT_B : constant is 2;
+    attribute mti_svvh_generic_type of ACT_BASE : constant is 2;
+end gemm_ctrl;

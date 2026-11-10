@@ -1,0 +1,67 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_defs.vh'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_array.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\bias_buf.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\bcast_buf.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\out_buffer.v'
+Analyzing included file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_defs.vh'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\out_buffer.v":10)
+Back to file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\out_buffer.v'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\out_buffer.v":10)
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_arb.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_ldmux.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_dma.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_ctrl.v'
+Analyzing included file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_defs.vh'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_ctrl.v":16)
+Back to file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_ctrl.v'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_ctrl.v":16)
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_core.v'
+Analyzing included file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_defs.vh'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_core.v":10)
+Back to file 'D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_core.v'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_core.v":10)
+Compiling module 'gemm_core'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_core.v":11)
+Compiling module 'gemm_ctrl(C1_W=24'b000000000000000000000000,C1_B=24'b000000000000000010011000,C3_W=24'b000000000000000010110000,C3_B=24'b000000000000101000010000,C5_W=24'b000000000000101001010000,C5_B=24'b000000001100010111010000,F6_W=24'b000000001100011110110000,F6_B=24'b000000001110111100010000,OUT_W=24'b000000001111000001100000,OUT_B=24'b000000001111001110101000,ACT_BASE=24'b000000010000000000000000)'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_ctrl.v":17)
+Compiling module 'gemm_arb'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_arb.v":10)
+Compiling module 'gemm_ldmux'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_ldmux.v":5)
+Compiling module 'bias_buf'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\bias_buf.v":8)
+Compiling module 'bcast_buf'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\bcast_buf.v":8)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\bcast_buf.v":17)
+Compiling module 'gemm_dma'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_dma.v":16)
+Compiling module 'elem_pingpong'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":12)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\elem_pingpong.v":57)
+Compiling module 'gemm_array'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\gemm_array.v":16)
+Compiling module 'out_buffer'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\out_buffer.v":11)
+Extracting RAM for identifier 'mem'("D:\hcmut\HK261\CDTKVM\my_gemm\rtl\out_buffer.v":25)
+NOTE  (EX0101) : Current top module is "gemm_core"
+[5%] Running netlist conversion ...
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+[95%] Generate netlist file "D:\hcmut\HK261\CDTKVM\my_gemm\syn\impl\gwsynthesis\gemm_core.vg" completed
+[100%] Generate report file "D:\hcmut\HK261\CDTKVM\my_gemm\syn\impl\gwsynthesis\gemm_core_syn.rpt.html" completed
+GowinSynthesis finish

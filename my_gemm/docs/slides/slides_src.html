@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Khối GEMM LeNet-5</title>
+<style>
+:root {
+  /* Mau mach in: xanh PCB dam + dong (copper) lam diem nhan */
+  --bg: #f5f7f6; --paper: #ffffff; --ink: #17241f; --muted: #5a6862; --line: #d3dcd8;
+  --pcb: #0f3b2e; --pcb2: #1e5a46; --mint: #dcefe5; --copper: #c2662d; --copper-soft: #f8e4d6;
+  --ok: #23824f; --bad: #c83c3c; --bad-soft: #f8dede; --grey: #e6ebe9;
+  --font: "Segoe UI", "Segoe UI Variable", Arial, sans-serif; --mono: Consolas, "Courier New", monospace;
+}
+@page { size: 1280px 720px; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); }
+body { font-family: var(--font); color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.slide { width: 1280px; height: 720px; position: relative; overflow: hidden; background: var(--bg);
+  padding: 44px 64px 40px; display: flex; flex-direction: column; gap: 18px; page-break-after: always; break-after: page; }
+.slide:last-child { page-break-after: auto; break-after: auto; }
+.hd h2 { margin: 0; font-size: 36px; font-weight: 700; line-height: 1.15; letter-spacing: -0.2px; }
+.hd .sub { margin: 6px 0 0; font-size: 20px; color: var(--muted); }
+.body { flex: 1; display: flex; flex-direction: column; gap: 16px; min-height: 0; }
+.pg { position: absolute; right: 40px; bottom: 18px; font-size: 13px; color: var(--muted); font-family: var(--mono); }
+.callout { background: var(--copper-soft); border-radius: 10px; padding: 14px 20px; font-size: 19px; line-height: 1.45; }
+.callout b { color: var(--copper); }
+.note { font-size: 16px; color: var(--muted); line-height: 1.45; }
+.row { display: flex; gap: 20px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
+.card h3 { margin: 0 0 8px; font-size: 22px; }
+.mono { font-family: var(--mono); }
+svg { display: block; }
+svg text { font-family: var(--font); fill: var(--ink); }
+svg .t14 { font-size: 14px; } svg .t16 { font-size: 16px; } svg .t18 { font-size: 18px; } svg .t20 { font-size: 20px; }
+svg .t22 { font-size: 22px; } svg .t26 { font-size: 26px; } svg .b { font-weight: 700; }
+svg .mu { fill: var(--muted); } svg .wh { fill: #fff; } svg .cu { fill: var(--copper); } svg .gr { fill: var(--ok); } svg .rd { fill: var(--bad); }
+svg .mo { font-family: var(--mono); }
+svg .bx { fill: var(--paper); stroke: var(--ink); stroke-width: 1.6; }
+svg .bxg { fill: var(--mint); stroke: var(--pcb2); stroke-width: 1.6; }
+svg .bxc { fill: var(--copper-soft); stroke: var(--copper); stroke-width: 1.8; }
+svg .bxd { fill: var(--pcb); stroke: var(--pcb); }
+svg .bxcu { fill: var(--copper); stroke: var(--copper); }
+svg .ar { stroke: var(--ink); stroke-width: 2; fill: none; }
+svg .arc { stroke: var(--copper); stroke-width: 2.2; fill: none; }
+svg .arg { stroke: var(--pcb2); stroke-width: 2.2; fill: none; }
+svg .ln { stroke: var(--line); stroke-width: 1; fill: none; }
+svg .dash { stroke: var(--muted); stroke-width: 1.6; stroke-dasharray: 7 5; fill: none; }
+svg .pxbg { fill: #fff; stroke: var(--line); }
+svg .px { fill: var(--pcb); }
+svg .win { fill: none; stroke: var(--copper); stroke-width: 3; }
+svg .cell { fill: #fff; stroke: var(--line); }
+svg .numw { fill: #fff; font-size: 12px; font-family: var(--mono); }
+svg .numd { fill: var(--ink); font-size: 12px; font-family: var(--mono); }
+.dark { background: var(--pcb); color: #fff; }
+.dark .pg { color: #9fc7b5; }
+.chip { display: inline-block; padding: 3px 12px; border-radius: 999px; font-size: 15px; font-weight: 600; }
+.chip.conv { background: var(--copper-soft); color: var(--copper); }
+.chip.fc { background: var(--mint); color: var(--pcb2); }
+.steps { display: flex; gap: 10px; flex-wrap: wrap; }
+.step { display: flex; align-items: center; gap: 8px; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px 6px 6px; font-size: 16px; }
+.step i { font-style: normal; width: 26px; height: 26px; border-radius: 50%; background: var(--copper); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+.tile { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 20px 24px; display: flex; flex-direction: column; gap: 4px; }
+.tile .big { font-size: 60px; font-weight: 700; line-height: 1; color: var(--pcb2); }
+.tile .lab { font-size: 19px; color: var(--muted); }
+.points { display: flex; flex-direction: column; gap: 18px; }
+.pt { display: flex; gap: 14px; align-items: flex-start; font-size: 21px; line-height: 1.4; }
+.pt i { font-style: normal; flex: 0 0 34px; height: 34px; border-radius: 50%; background: var(--pcb2); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; }
+</style>
+</head>
+<body>
+
+<!-- 1. Tieu de -->
+<section class="slide dark" style="justify-content:center;">
+  <div class="row" style="align-items:center; gap:56px;">
+    <div style="flex:1; display:flex; flex-direction:column; gap:22px;">
+      <div style="font-size:18px; color:#9fc7b5; letter-spacing:1px;">ĐỒ ÁN LENET-5 TRÊN FPGA · BÁO CÁO NHÓM</div>
+      <div style="font-size:54px; font-weight:700; line-height:1.12;">Khối GEMM:<br>bộ máy nhân-cộng của LeNet-5</div>
+      <div style="font-size:24px; color:#dcefe5; line-height:1.4;">Mình code cái gì, nó chạy thế nào,<br>và làm sao biết nó tính đúng</div>
+      <div style="font-size:17px; color:#9fc7b5; margin-top:18px;">Verilog-2001 · mô phỏng ModelSim · tổng hợp Gowin GW1NSR-4C</div>
+    </div>
+    <svg width="380" height="380" viewBox="0 0 380 380" aria-hidden="true">
+      <rect x="0" y="0" width="380" height="380" rx="26" fill="#164a3a"/>
+      <g>
+        <!-- 16 o = 16 lane MAC -->
+        <g transform="translate(30,30)">
+          <rect x="0" y="0" width="70" height="70" rx="10" fill="#c2662d"/><text x="35" y="44" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="82" y="0" width="70" height="70" rx="10" fill="#1e5a46"/><text x="117" y="44" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="164" y="0" width="70" height="70" rx="10" fill="#1e5a46"/><text x="199" y="44" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="246" y="0" width="70" height="70" rx="10" fill="#1e5a46"/><text x="281" y="44" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="0" y="82" width="70" height="70" rx="10" fill="#1e5a46"/><text x="35" y="126" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="82" y="82" width="70" height="70" rx="10" fill="#c2662d"/><text x="117" y="126" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="164" y="82" width="70" height="70" rx="10" fill="#1e5a46"/><text x="199" y="126" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="246" y="82" width="70" height="70" rx="10" fill="#1e5a46"/><text x="281" y="126" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="0" y="164" width="70" height="70" rx="10" fill="#1e5a46"/><text x="35" y="208" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="82" y="164" width="70" height="70" rx="10" fill="#1e5a46"/><text x="117" y="208" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="164" y="164" width="70" height="70" rx="10" fill="#c2662d"/><text x="199" y="208" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="246" y="164" width="70" height="70" rx="10" fill="#1e5a46"/><text x="281" y="208" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="0" y="246" width="70" height="70" rx="10" fill="#1e5a46"/><text x="35" y="290" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="82" y="246" width="70" height="70" rx="10" fill="#1e5a46"/><text x="117" y="290" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="164" y="246" width="70" height="70" rx="10" fill="#1e5a46"/><text x="199" y="290" text-anchor="middle" class="t22 b wh">×+</text>
+          <rect x="246" y="246" width="70" height="70" rx="10" fill="#c2662d"/><text x="281" y="290" text-anchor="middle" class="t22 b wh">×+</text>
+        </g>
+        <text x="190" y="368" text-anchor="middle" class="t16" style="fill:#9fc7b5">16 lane nhân-cộng chạy song song</text>
+      </g>
+    </svg>
+  </div>
+  <div class="pg">1 / 19</div>
+</section>
+
+<!-- 2. LeNet lam gi -->
+<section class="slide">
+  <div class="hd"><h2>LeNet-5 làm gì, và khối GEMM nằm ở đâu?</h2>
+    <p class="sub">Ảnh chữ viết tay đi qua 5 bước tính toán, cuối cùng ra con số dự đoán</p></div>
+  <div class="body">
+    <svg width="1152" height="470" viewBox="0 0 1152 470">
+      <defs><marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#17241f"/></marker></defs>
+      <g transform="translate(0,71)">{{DIGIT28}}</g>
+      <text x="84" y="268" text-anchor="middle" class="t16 mu">ảnh thật trong dữ liệu</text>
+      <text x="84" y="290" text-anchor="middle" class="t16 mu">(28 × 28 pixel)</text>
+      <path class="ar" d="M176,155 L212,155" marker-end="url(#m2)"/>
+      <g class="t18">
+        <rect class="bx" x="220" y="110" width="140" height="90" rx="10"/><text x="290" y="148" text-anchor="middle" class="t22 b">C1</text><text x="290" y="176" text-anchor="middle" class="t16 mu">6 bộ lọc 5×5</text>
+        <path class="ar" d="M360,155 L382,155" marker-end="url(#m2)"/>
+        <rect class="bx" x="384" y="110" width="140" height="90" rx="10"/><text x="454" y="148" text-anchor="middle" class="t22 b">C3</text><text x="454" y="176" text-anchor="middle" class="t16 mu">16 bộ lọc 5×5</text>
+        <path class="ar" d="M524,155 L546,155" marker-end="url(#m2)"/>
+        <rect class="bx" x="548" y="110" width="140" height="90" rx="10"/><text x="618" y="148" text-anchor="middle" class="t22 b">C5</text><text x="618" y="176" text-anchor="middle" class="t16 mu">120 neuron</text>
+        <path class="ar" d="M688,155 L710,155" marker-end="url(#m2)"/>
+        <rect class="bx" x="712" y="110" width="140" height="90" rx="10"/><text x="782" y="148" text-anchor="middle" class="t22 b">F6</text><text x="782" y="176" text-anchor="middle" class="t16 mu">84 neuron</text>
+        <path class="ar" d="M852,155 L874,155" marker-end="url(#m2)"/>
+        <rect class="bx" x="876" y="110" width="140" height="90" rx="10"/><text x="946" y="148" text-anchor="middle" class="t22 b">Output</text><text x="946" y="176" text-anchor="middle" class="t16 mu">10 điểm số</text>
+      </g>
+      <path class="ar" d="M1016,155 L1050,155" marker-end="url(#m2)"/>
+      <circle cx="1100" cy="155" r="46" fill="#c2662d"/><text x="1100" y="172" text-anchor="middle" class="wh b" style="font-size:48px">7</text>
+      <text x="1100" y="232" text-anchor="middle" class="t16 mu">đoán: số 7</text>
+      <text x="618" y="88" text-anchor="middle" class="t16 mu">giữa các bước: ReLU, pool, làm tròn (do khối khác lo)</text>
+      <path class="arc" d="M220,262 L220,280 L1016,280 L1016,262"/>
+      <path class="arc" d="M618,280 L618,306"/>
+      <rect x="268" y="310" width="700" height="96" rx="12" fill="#f8e4d6"/>
+      <text x="618" y="350" text-anchor="middle" class="t22 b">5 bước này đều là cùng một phép toán: nhân rồi cộng dồn</text>
+      <text x="618" y="384" text-anchor="middle" class="t20 cu b">→ làm 1 khối GEMM, dùng lại 5 lần (5 "phase")</text>
+    </svg>
+  </div>
+  <div class="pg">2 / 19</div>
+</section>
+
+<!-- 3. Phep toan cot loi -->
+<section class="slide">
+  <div class="hd"><h2>Phép toán cốt lõi: nhân từng cặp rồi cộng dồn</h2>
+    <p class="sub">Ví dụ 1 neuron có 3 input</p></div>
+  <div class="body" style="flex-direction:row; gap:40px; align-items:center;">
+    <svg width="500" height="440" viewBox="0 0 500 440">
+      <defs><marker id="m3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#17241f"/></marker></defs>
+      <text x="70" y="40" text-anchor="middle" class="t18 mu">input</text>
+      <path class="ar" d="M104,100 L352,212" marker-end="url(#m3)"/>
+      <path class="ar" d="M104,220 L350,220" marker-end="url(#m3)"/>
+      <path class="ar" d="M104,340 L352,228" marker-end="url(#m3)"/>
+      <circle cx="70" cy="100" r="34" class="bxg"/><text x="70" y="108" text-anchor="middle" class="t22 b">10</text>
+      <circle cx="70" cy="220" r="34" class="bxg"/><text x="70" y="228" text-anchor="middle" class="t22 b">20</text>
+      <circle cx="70" cy="340" r="34" class="bxg"/><text x="70" y="348" text-anchor="middle" class="t22 b">5</text>
+      <rect x="196" y="122" width="52" height="30" rx="6" fill="#f8e4d6"/><text x="222" y="143" text-anchor="middle" class="t18 b cu">×2</text>
+      <rect x="190" y="190" width="64" height="30" rx="6" fill="#f8e4d6"/><text x="222" y="211" text-anchor="middle" class="t18 b cu">×(−1)</text>
+      <rect x="196" y="290" width="52" height="30" rx="6" fill="#f8e4d6"/><text x="222" y="311" text-anchor="middle" class="t18 b cu">×3</text>
+      <text x="222" y="410" text-anchor="middle" class="t16 mu">trọng số (weight)</text>
+      <path class="ar" d="M400,110 L400,168" marker-end="url(#m3)"/>
+      <text x="412" y="140" class="t18 b">+ bias 4</text>
+      <circle cx="400" cy="220" r="48" fill="#c2662d"/><text x="400" y="230" text-anchor="middle" class="t26 b wh">19</text>
+      <text x="400" y="296" text-anchor="middle" class="t18 mu">output</text>
+    </svg>
+    <div style="flex:1; display:flex; flex-direction:column; gap:22px;">
+      <div class="card mono" style="font-size:24px; line-height:1.6;">
+        &nbsp;&nbsp;2 × 10 = &nbsp;20<br>
+        −1 × 20 = −20<br>
+        &nbsp;&nbsp;3 × &nbsp;5 = &nbsp;15<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bias = &nbsp;&nbsp;4<br>
+        <span style="color:#c2662d; font-weight:700;">&nbsp;&nbsp;cộng lại = &nbsp;19</span>
+      </div>
+      <svg width="600" height="120" viewBox="0 0 600 120">
+        <rect class="bxc" x="0" y="20" width="110" height="70" rx="6"/><text x="55" y="62" text-anchor="middle" class="t22 b">W</text><text x="55" y="112" text-anchor="middle" class="t14 mu">trọng số</text>
+        <text x="132" y="64" text-anchor="middle" class="t26 b">×</text>
+        <rect class="bxg" x="155" y="0" width="90" height="110" rx="6"/><text x="200" y="62" text-anchor="middle" class="t22 b">P</text>
+        <text x="268" y="64" text-anchor="middle" class="t26 b">+</text>
+        <rect class="bx" x="290" y="20" width="34" height="70" rx="6"/><text x="307" y="62" text-anchor="middle" class="t20 b">B</text><text x="307" y="112" text-anchor="middle" class="t14 mu">bias</text>
+        <text x="350" y="64" text-anchor="middle" class="t26 b">=</text>
+        <rect class="bx" x="380" y="20" width="90" height="70" rx="6"/><text x="425" y="62" text-anchor="middle" class="t20 b">kết quả</text>
+        <text x="200" y="0" dy="-4" text-anchor="middle" class="t14 mu"></text>
+      </svg>
+      <div class="callout">Làm phép này cho <b>rất nhiều neuron, nhiều vị trí cùng lúc</b> thì gọi là nhân ma trận: kết quả = W × P + B. Khối làm việc đó tên là <b>GEMM</b> (General Matrix Multiplication).</div>
+    </div>
+  </div>
+  <div class="pg">3 / 19</div>
+</section>
+
+<!-- 4. Conv thanh nhan ma tran -->
+<section class="slide">
+  <div class="hd"><h2>Lớp Conv cũng biến được thành nhân ma trận</h2>
+    <p class="sub">Trượt cửa sổ 5×5 trên ảnh, mỗi vị trí duỗi thành 1 cột</p></div>
+  <div class="body">
+    <svg width="1152" height="420" viewBox="0 0 1152 420">
+      <defs><marker id="m4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#17241f"/></marker></defs>
+      <g transform="translate(0,30)">{{DIGIT32}}</g>
+      <text x="144" y="350" text-anchor="middle" class="t16 mu">ảnh thêm viền 0 → 32 × 32</text>
+      <path class="ar" d="M300,175 L366,175" marker-end="url(#m4)"/>
+      <text x="333" y="160" text-anchor="middle" class="t14 mu">lấy 1 cửa sổ</text>
+      <g transform="translate(378,90)">{{WIN}}</g>
+      <text x="463" y="300" text-anchor="middle" class="t16 mu">25 con số = độ sáng pixel</text>
+      <text x="463" y="322" text-anchor="middle" class="t16 mu">(0 = nền, 255 = nét chữ)</text>
+      <path class="ar" d="M560,175 L626,175" marker-end="url(#m4)"/>
+      <text x="593" y="160" text-anchor="middle" class="t14 mu">duỗi thẳng</text>
+      <g transform="translate(640,12)">{{COL}}</g>
+      <text x="655" y="362" text-anchor="middle" class="t16 mu">1 cột</text>
+      <text x="655" y="382" text-anchor="middle" class="t16 mu">25 số</text>
+      <path class="ar" d="M686,175 L752,175" marker-end="url(#m4)"/>
+      <!-- ma tran P1 -->
+      <rect x="770" y="12" width="370" height="325" fill="#dcefe5" stroke="#1e5a46" stroke-width="1.6"/>
+      <g class="ln" style="stroke:#a9cdb9">
+        <path d="M790,12 V337 M810,12 V337 M830,12 V337 M850,12 V337 M870,12 V337 M890,12 V337 M910,12 V337 M930,12 V337 M950,12 V337 M970,12 V337 M990,12 V337 M1010,12 V337 M1030,12 V337 M1050,12 V337 M1070,12 V337 M1090,12 V337 M1110,12 V337"/>
+      </g>
+      <rect x="930" y="12" width="20" height="325" fill="#f8e4d6" stroke="#c2662d" stroke-width="2.5"/>
+      <text x="955" y="362" text-anchor="middle" class="t18 b">P1 = 25 hàng × 784 cột</text>
+      <text x="955" y="386" text-anchor="middle" class="t16 mu">784 = 28 × 28 vị trí cửa sổ</text>
+    </svg>
+    <div class="callout">Bộ lọc 5×5 cũng duỗi thành 1 hàng 25 số → 6 bộ lọc thành W1 (6 × 25). Lớp Conv trở thành <b>W1 × P1 + B</b>: đúng dạng GEMM. Việc duỗi ảnh (im2col) do khối khác làm sẵn; khối GEMM nhận P đã duỗi.</div>
+  </div>
+  <div class="pg">4 / 19</div>
+</section>
+
+<!-- 5. 5 phase -->
+<section class="slide">
+  <div class="hd"><h2>Khối GEMM được dùng 5 lần, mỗi lần một kích thước</h2>
+    <p class="sub">Mỗi lần dùng gọi là 1 phase; khối lượng việc rất chênh lệch</p></div>
+  <div class="body">
+    <svg width="1152" height="380" viewBox="0 0 1152 380">
+      <text x="0" y="22" class="t16 mu b">Phase</text>
+      <text x="300" y="22" class="t16 mu b">Kích thước (M, K, N)</text>
+      <text x="520" y="22" class="t16 mu b">Số phép nhân-cộng cần làm</text>
+      <g transform="translate(0,40)">
+        <text x="0" y="40" class="t22 b">Phase 1 · C1</text><rect x="170" y="20" width="70" height="28" rx="14" fill="#f8e4d6"/><text x="205" y="40" text-anchor="middle" class="t14 b cu">Conv</text>
+        <text x="300" y="40" class="t20 mo">6 · 25 · 784</text>
+        <rect x="520" y="18" width="275" height="32" rx="4" fill="#c2662d"/><text x="806" y="41" class="t18 mo">117 600</text>
+      </g>
+      <g transform="translate(0,104)">
+        <text x="0" y="40" class="t22 b">Phase 2 · C3</text><rect x="170" y="20" width="70" height="28" rx="14" fill="#f8e4d6"/><text x="205" y="40" text-anchor="middle" class="t14 b cu">Conv</text>
+        <text x="300" y="40" class="t20 mo">16 · 150 · 100</text>
+        <rect x="520" y="18" width="560" height="32" rx="4" fill="#c2662d"/><text x="1066" y="41" class="t18 mo" text-anchor="end" style="fill:#fff">240 000</text>
+      </g>
+      <g transform="translate(0,168)">
+        <text x="0" y="40" class="t22 b">Phase 3 · C5</text><rect x="170" y="20" width="70" height="28" rx="14" fill="#dcefe5"/><text x="205" y="40" text-anchor="middle" class="t14 b" style="fill:#1e5a46">FC</text>
+        <text x="300" y="40" class="t20 mo">120 · 400 · 1</text>
+        <rect x="520" y="18" width="112" height="32" rx="4" fill="#1e5a46"/><text x="643" y="41" class="t18 mo">48 000</text>
+      </g>
+      <g transform="translate(0,232)">
+        <text x="0" y="40" class="t22 b">Phase 4 · F6</text><rect x="170" y="20" width="70" height="28" rx="14" fill="#dcefe5"/><text x="205" y="40" text-anchor="middle" class="t14 b" style="fill:#1e5a46">FC</text>
+        <text x="300" y="40" class="t20 mo">84 · 120 · 1</text>
+        <rect x="520" y="18" width="24" height="32" rx="4" fill="#1e5a46"/><text x="555" y="41" class="t18 mo">10 080</text>
+      </g>
+      <g transform="translate(0,296)">
+        <text x="0" y="40" class="t22 b">Phase 5 · Output</text><rect x="190" y="20" width="70" height="28" rx="14" fill="#dcefe5"/><text x="225" y="40" text-anchor="middle" class="t14 b" style="fill:#1e5a46">FC</text>
+        <text x="300" y="40" class="t20 mo">10 · 84 · 1</text>
+        <rect x="520" y="18" width="4" height="32" rx="2" fill="#1e5a46"/><text x="535" y="41" class="t18 mo">840</text>
+      </g>
+    </svg>
+    <div class="row">
+      <div class="card" style="flex:1; font-size:18px;"><b class="mono" style="color:#c2662d">M</b> = có bao nhiêu bộ lọc / neuron</div>
+      <div class="card" style="flex:1; font-size:18px;"><b class="mono" style="color:#c2662d">K</b> = mỗi kết quả phải cộng dồn bao nhiêu tích</div>
+      <div class="card" style="flex:1; font-size:18px;"><b class="mono" style="color:#c2662d">N</b> = bao nhiêu vị trí (Conv), hoặc 1 (FC)</div>
+    </div>
+  </div>
+  <div class="pg">5 / 19</div>
+</section>
+
+<!-- 6. 16 lane -->
+<section class="slide">
+  <div class="hd"><h2>Ý tưởng phần cứng: 16 làn nhân-cộng chạy cùng lúc</h2>
+    <p class="sub">Một số được phát chung cho cả 16 làn, mỗi làn nhân với số riêng của mình</p></div>
+  <div class="body" style="flex-direction:row; gap:36px; align-items:center;">
+    <svg width="760" height="450" viewBox="0 0 760 450">
+      <defs><marker id="m6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#17241f"/></marker>
+            <marker id="m6c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c2662d"/></marker></defs>
+      <rect class="bxc" x="0" y="18" width="170" height="54" rx="8"/><text x="85" y="44" text-anchor="middle" class="t18 b">số chung</text><text x="85" y="64" text-anchor="middle" class="t14 mu">(broadcast)</text>
+      <path class="arc" d="M170,45 L740,45"/>
+      <text x="10" y="118" class="t16 mu">số riêng</text><text x="10" y="138" class="t14 mu">(element)</text>
+      <text x="10" y="200" class="t16 mu">nhân</text>
+      <text x="10" y="272" class="t16 mu">cộng dồn</text>
+      <text x="10" y="340" class="t16 mu">ô nhớ kết quả</text><text x="10" y="360" class="t14 mu">(INT32)</text>
+      <!-- lane template: cx = 240, 330, 420, 510, 670 -->
+      <g id="lanes">
+        <g transform="translate(240,0)">
+          <rect class="bxg" x="-32" y="96" width="64" height="40" rx="6"/><text x="0" y="122" text-anchor="middle" class="t18 b">a1</text>
+          <path class="ar" d="M0,136 L0,174" marker-end="url(#m6)"/>
+          <path class="arc" d="M40,45 L40,195 L22,195" marker-end="url(#m6c)"/>
+          <circle cx="0" cy="195" r="20" class="bx"/><text x="0" y="202" text-anchor="middle" class="t20 b">×</text>
+          <path class="ar" d="M0,215 L0,248" marker-end="url(#m6)"/>
+          <circle cx="0" cy="268" r="18" class="bx"/><text x="0" y="275" text-anchor="middle" class="t20 b">+</text>
+          <path class="ar" d="M0,286 L0,316" marker-end="url(#m6)"/>
+          <rect class="bxd" x="-32" y="318" width="64" height="44" rx="6"/><text x="0" y="346" text-anchor="middle" class="t18 b wh">Σ1</text>
+          <path class="ar" d="M32,340 L44,340 L44,268 L20,268" marker-end="url(#m6)"/>
+        </g>
+        <g transform="translate(330,0)">
+          <rect class="bxg" x="-32" y="96" width="64" height="40" rx="6"/><text x="0" y="122" text-anchor="middle" class="t18 b">a2</text>
+          <path class="ar" d="M0,136 L0,174" marker-end="url(#m6)"/>
+          <path class="arc" d="M40,45 L40,195 L22,195" marker-end="url(#m6c)"/>
+          <circle cx="0" cy="195" r="20" class="bx"/><text x="0" y="202" text-anchor="middle" class="t20 b">×</text>
+          <path class="ar" d="M0,215 L0,248" marker-end="url(#m6)"/>
+          <circle cx="0" cy="268" r="18" class="bx"/><text x="0" y="275" text-anchor="middle" class="t20 b">+</text>
+          <path class="ar" d="M0,286 L0,316" marker-end="url(#m6)"/>
+          <rect class="bxd" x="-32" y="318" width="64" height="44" rx="6"/><text x="0" y="346" text-anchor="middle" class="t18 b wh">Σ2</text>
+          <path class="ar" d="M32,340 L44,340 L44,268 L20,268" marker-end="url(#m6)"/>
+        </g>
+        <g transform="translate(420,0)">
+          <rect class="bxg" x="-32" y="96" width="64" height="40" rx="6"/><text x="0" y="122" text-anchor="middle" class="t18 b">a3</text>
+          <path class="ar" d="M0,136 L0,174" marker-end="url(#m6)"/>
+          <path class="arc" d="M40,45 L40,195 L22,195" marker-end="url(#m6c)"/>
+          <circle cx="0" cy="195" r="20" class="bx"/><text x="0" y="202" text-anchor="middle" class="t20 b">×</text>
+          <path class="ar" d="M0,215 L0,248" marker-end="url(#m6)"/>
+          <circle cx="0" cy="268" r="18" class="bx"/><text x="0" y="275" text-anchor="middle" class="t20 b">+</text>
+          <path class="ar" d="M0,286 L0,316" marker-end="url(#m6)"/>
+          <rect class="bxd" x="-32" y="318" width="64" height="44" rx="6"/><text x="0" y="346" text-anchor="middle" class="t18 b wh">Σ3</text>
+          <path class="ar" d="M32,340 L44,340 L44,268 L20,268" marker-end="url(#m6)"/>
+        </g>
+        <g transform="translate(510,0)">
+          <rect class="bxg" x="-32" y="96" width="64" height="40" rx="6"/><text x="0" y="122" text-anchor="middle" class="t18 b">a4</text>
+          <path class="ar" d="M0,136 L0,174" marker-end="url(#m6)"/>
+          <path class="arc" d="M40,45 L40,195 L22,195" marker-end="url(#m6c)"/>
+          <circle cx="0" cy="195" r="20" class="bx"/><text x="0" y="202" text-anchor="middle" class="t20 b">×</text>
+          <path class="ar" d="M0,215 L0,248" marker-end="url(#m6)"/>
+          <circle cx="0" cy="268" r="18" class="bx"/><text x="0" y="275" text-anchor="middle" class="t20 b">+</text>
+          <path class="ar" d="M0,286 L0,316" marker-end="url(#m6)"/>
+          <rect class="bxd" x="-32" y="318" width="64" height="44" rx="6"/><text x="0" y="346" text-anchor="middle" class="t18 b wh">Σ4</text>
+          <path class="ar" d="M32,340 L44,340 L44,268 L20,268" marker-end="url(#m6)"/>
+        </g>
+        <text x="590" y="250" text-anchor="middle" class="t26 b mu">…</text>
+        <g transform="translate(670,0)">
+          <rect class="bxg" x="-32" y="96" width="64" height="40" rx="6"/><text x="0" y="122" text-anchor="middle" class="t18 b">a16</text>
+          <path class="ar" d="M0,136 L0,174" marker-end="url(#m6)"/>
+          <path class="arc" d="M40,45 L40,195 L22,195" marker-end="url(#m6c)"/>
+          <circle cx="0" cy="195" r="20" class="bx"/><text x="0" y="202" text-anchor="middle" class="t20 b">×</text>
+          <path class="ar" d="M0,215 L0,248" marker-end="url(#m6)"/>
+          <circle cx="0" cy="268" r="18" class="bx"/><text x="0" y="275" text-anchor="middle" class="t20 b">+</text>
+          <path class="ar" d="M0,286 L0,316" marker-end="url(#m6)"/>
+          <rect class="bxd" x="-32" y="318" width="64" height="44" rx="6"/><text x="0" y="346" text-anchor="middle" class="t18 b wh">Σ16</text>
+          <path class="ar" d="M32,340 L44,340 L44,268 L20,268" marker-end="url(#m6)"/>
+        </g>
+      </g>
+      <text x="455" y="410" text-anchor="middle" class="t18 b">16 làn (lane) = 16 kết quả tính cùng lúc</text>
+    </svg>
+    <div class="points" style="flex:1;">
+      <div class="pt"><i>1</i><div>Mỗi nhịp clock: <b>1 số chung × 16 số riêng</b>, cùng một lúc</div></div>
+      <div class="pt"><i>2</i><div>Mỗi làn cộng tích vào ô nhớ Σ của riêng nó</div></div>
+      <div class="pt"><i>3</i><div>Lặp <b>K nhịp</b> → xong 16 kết quả (gọi là 1 block), rồi làm block tiếp</div></div>
+      <div class="note">Kiểu này gọi là Output-Stationary: mỗi làn giữ chặt 1 kết quả cho tới khi tính xong (slide 14 của nhóm trưởng).</div>
+    </div>
+  </div>
+  <div class="pg">6 / 19</div>
+</section>
+
+<!-- 7. Hai che do -->
+<section class="slide">
+  <div class="hd"><h2>Hai cách chia việc cho 16 làn</h2>
+    <p class="sub">Cùng một phần cứng, chỉ đổi vai: số nào phát chung, số nào riêng từng làn</p></div>
+  <div class="body">
+    <div class="grid2" style="flex:1;">
+      <div class="card" style="display:flex; flex-direction:column; gap:14px;">
+        <div><span class="chip conv">Conv · Phase 1, 2</span></div>
+        <svg width="520" height="150" viewBox="0 0 520 150">
+          <g class="ln" style="stroke:#c9d3cf">
+            <rect x="0" y="10" width="480" height="108" fill="#fff"/>
+            <path d="M0,28 H480 M0,46 H480 M0,64 H480 M0,82 H480 M0,100 H480"/>
+            <path d="M20,10 V118 M40,10 V118 M60,10 V118 M80,10 V118 M100,10 V118 M120,10 V118 M140,10 V118 M160,10 V118 M180,10 V118 M200,10 V118 M220,10 V118 M240,10 V118 M260,10 V118 M280,10 V118 M300,10 V118 M320,10 V118 M340,10 V118 M360,10 V118 M380,10 V118 M400,10 V118 M420,10 V118 M440,10 V118 M460,10 V118"/>
+          </g>
+          <rect x="0" y="10" width="320" height="18" fill="#c2662d" opacity="0.85"/>
+          <text x="160" y="24" text-anchor="middle" class="t14 b wh">16 làn = 16 pixel liền nhau</text>
+          <text x="490" y="68" class="t14 mu">…</text>
+          <text x="0" y="142" class="t14 mu">kết quả: hàng = bộ lọc, cột = vị trí pixel</text>
+        </svg>
+        <div style="font-size:19px; line-height:1.7;">
+          Số chung = <b>1 trọng số</b> của bộ lọc<br>
+          16 số riêng = <b>16 pixel</b> của ảnh đã duỗi<br>
+          Bias = <b>giống nhau</b> cho cả 16 làn
+        </div>
+        <div style="margin-top:auto; background:#f8e4d6; border-radius:10px; padding:12px 16px; font-size:17px; line-height:1.5;">
+          <b>Ví dụ Phase 1:</b> 6 bộ lọc × 49 block (784 ÷ 16) = 294 block, mỗi block chạy K = 25 nhịp.
+        </div>
+      </div>
+      <div class="card" style="display:flex; flex-direction:column; gap:14px;">
+        <div><span class="chip fc">FC · Phase 3, 4, 5</span></div>
+        <svg width="520" height="150" viewBox="0 0 520 150">
+          <rect x="0" y="0" width="34" height="140" fill="#fff" stroke="#c9d3cf"/>
+          <rect x="0" y="0" width="34" height="112" fill="#1e5a46" opacity="0.9"/>
+          <g class="ln" style="stroke:#c9d3cf"><path d="M0,7 H34 M0,14 H34 M0,21 H34 M0,28 H34 M0,35 H34 M0,42 H34 M0,49 H34 M0,56 H34 M0,63 H34 M0,70 H34 M0,77 H34 M0,84 H34 M0,91 H34 M0,98 H34 M0,105 H34 M0,112 H34 M0,119 H34 M0,126 H34 M0,133 H34"/></g>
+          <path class="arg" d="M44,0 L52,0 L52,112 L44,112"/>
+          <text x="62" y="52" class="t18 b" style="fill:#1e5a46">16 làn = 16 neuron</text>
+          <text x="62" y="76" class="t14 mu">kết quả là 1 cột (N = 1)</text>
+        </svg>
+        <div style="font-size:19px; line-height:1.7;">
+          Số chung = <b>1 input</b> (V, H3, H4)<br>
+          16 số riêng = <b>trọng số của 16 neuron</b><br>
+          Bias = <b>mỗi neuron một giá trị</b>
+        </div>
+        <div style="margin-top:auto; background:#dcefe5; border-radius:10px; padding:12px 16px; font-size:17px; line-height:1.5;">
+          <b>Ví dụ Phase 3:</b> 120 neuron = 7 block đủ 16 + 1 block 8 neuron, mỗi block chạy K = 400 nhịp.
+        </div>
+      </div>
+    </div>
+    <div class="note">Theo slide 15–17 của nhóm trưởng: hai chế độ đảo vai trò toán hạng.</div>
+  </div>
+  <div class="pg">7 / 19</div>
+</section>
+
+<!-- 8. Bottleneck -->
+<section class="slide">
+  <div class="hd"><h2>Dữ liệu ở đâu ra? Bộ nhớ ngoài HyperRAM</h2>
+    <p class="sub">Trọng số (62 KB) không vừa trong chip, phải chở dần vào</p></div>
+  <div class="body">
+    <svg width="1152" height="380" viewBox="0 0 1152 380">
+      <defs><marker id="m8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c2662d"/></marker></defs>
+      <rect class="bxd" x="0" y="90" width="230" height="200" rx="14"/>
+      <text x="115" y="160" text-anchor="middle" class="t26 b wh">HyperRAM</text>
+      <text x="115" y="192" text-anchor="middle" class="t16" style="fill:#dcefe5">bộ nhớ ngoài chip</text>
+      <text x="115" y="236" text-anchor="middle" class="t16" style="fill:#dcefe5">62 KB trọng số</text>
+      <text x="115" y="258" text-anchor="middle" class="t16" style="fill:#dcefe5">+ ảnh / dữ liệu lớp trước</text>
+      <rect x="230" y="182" width="190" height="16" fill="#c2662d"/>
+      <text x="325" y="166" text-anchor="middle" class="t18 b cu">ống 8 bit</text>
+      <text x="325" y="226" text-anchor="middle" class="t16 mu">1 byte mỗi clock</text>
+      <path class="arc" d="M420,190 L440,190 L440,72 L458,72" marker-end="url(#m8)"/>
+      <path class="arc" d="M420,190 L458,190" marker-end="url(#m8)"/>
+      <path class="arc" d="M440,190 L440,306 L458,306" marker-end="url(#m8)"/>
+      <rect class="bxg" x="462" y="44" width="240" height="56" rx="8"/><text x="582" y="78" text-anchor="middle" class="t18 b">khay bias (16 số)</text>
+      <rect class="bxg" x="462" y="162" width="240" height="56" rx="8"/><text x="582" y="196" text-anchor="middle" class="t18 b">khay số chung</text>
+      <rect class="bxg" x="462" y="278" width="240" height="56" rx="8"/><text x="582" y="304" text-anchor="middle" class="t18 b">khay số riêng</text><text x="582" y="324" text-anchor="middle" class="t14 mu">(DMA chở vào)</text>
+      <polygon points="720,140 830,140 830,110 900,190 830,270 830,240 720,240" fill="#f8e4d6" stroke="#c2662d" stroke-width="2"/>
+      <text x="800" y="186" text-anchor="middle" class="t18 b cu">16 byte</text>
+      <text x="800" y="208" text-anchor="middle" class="t16 cu">mỗi nhịp</text>
+      <rect class="bxcu" x="912" y="100" width="230" height="180" rx="14"/>
+      <text x="1027" y="184" text-anchor="middle" class="t26 b wh">GEMM array</text>
+      <text x="1027" y="214" text-anchor="middle" class="t16 wh">16 làn nhân-cộng</text>
+    </svg>
+    <div class="callout">GEMM "ăn" nhanh hơn ống dẫn cấp được <b>16 lần</b> → cần các <b>khay chứa</b> (buffer) đặt sát GEMM, và một <b>người chở hàng</b> (DMA) lo nạp khay trước.</div>
+  </div>
+  <div class="pg">8 / 19</div>
+</section>
+
+<!-- 9. So do khoi -->
+<section class="slide">
+  <div class="hd"><h2>Sơ đồ khối mình đã code (đúng Figure 1)</h2>
+    <p class="sub">Mỗi ô là 1 file Verilog trong my_gemm/rtl</p></div>
+  <div class="body" style="gap:10px;">
+    <svg width="1152" height="440" viewBox="0 0 1152 470">
+      <defs><marker id="m9" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#17241f"/></marker>
+            <marker id="m9c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c2662d"/></marker></defs>
+      <rect x="160" y="8" width="986" height="458" rx="12" fill="none" class="dash"/>
+      <text x="176" y="32" class="t14 mu mo">gemm_core.v (khối mình code)</text>
+      <rect class="bxd" x="0" y="170" width="130" height="80" rx="10"/><text x="65" y="216" text-anchor="middle" class="t18 b wh">HyperRAM</text>
+      <polygon points="185,150 225,170 225,250 185,270" class="bx"/><text x="205" y="142" text-anchor="middle" class="t14 mu">mux</text>
+      <rect class="bxg" x="270" y="44" width="210" height="52" rx="8"/><text x="375" y="68" text-anchor="middle" class="t16 b">16 bias INT32</text><text x="375" y="87" text-anchor="middle" class="t14 mu mo">bias_buf.v</text>
+      <rect class="bxg" x="270" y="122" width="210" height="52" rx="8"/><text x="375" y="146" text-anchor="middle" class="t16 b">K INT8 · số chung</text><text x="375" y="165" text-anchor="middle" class="t14 mu mo">bcast_buf.v</text>
+      <rect class="bxg" x="270" y="200" width="210" height="60" rx="8"/><text x="375" y="226" text-anchor="middle" class="t16 b">Ping-pong · số riêng</text><text x="375" y="247" text-anchor="middle" class="t14 mu mo">elem_pingpong.v</text>
+      <rect class="bx" x="270" y="300" width="210" height="52" rx="8"/><text x="375" y="324" text-anchor="middle" class="t16 b">DMA (người chở)</text><text x="375" y="343" text-anchor="middle" class="t14 mu mo">gemm_dma.v</text>
+      <rect class="bxc" x="570" y="44" width="220" height="216" rx="10"/><text x="680" y="140" text-anchor="middle" class="t22 b">GEMM array</text><text x="680" y="166" text-anchor="middle" class="t16 mu">16 làn nhân-cộng</text><text x="680" y="188" text-anchor="middle" class="t14 mu mo">gemm_array.v</text>
+      <rect class="bx" x="880" y="44" width="230" height="216" rx="10"/><text x="995" y="140" text-anchor="middle" class="t22 b">Out_buffer</text><text x="995" y="166" text-anchor="middle" class="t16 mu">cất kết quả INT32</text><text x="995" y="188" text-anchor="middle" class="t14 mu mo">out_buffer.v</text>
+      <rect class="bxg" x="570" y="370" width="540" height="66" rx="10"/><text x="840" y="398" text-anchor="middle" class="t20 b">controller (bộ điều khiển)</text><text x="840" y="422" text-anchor="middle" class="t14 mu mo">gemm_ctrl.v + gemm_arb.v + gemm_ldmux.v</text>
+      <path class="ar" d="M130,210 L183,210" marker-end="url(#m9)"/>
+      <path class="ar" d="M225,178 L245,178 L245,70 L268,70" marker-end="url(#m9)"/>
+      <path class="ar" d="M225,196 L255,196 L255,148 L268,148" marker-end="url(#m9)"/>
+      <path class="ar" d="M225,242 L250,242 L250,326 L268,326" marker-end="url(#m9)"/>
+      <path class="ar" d="M375,300 L375,262" marker-end="url(#m9)"/>
+      <path class="ar" d="M480,70 L568,70" marker-end="url(#m9)"/><text x="486" y="62" class="t14 mu">bias(16)</text>
+      <path class="ar" d="M480,148 L568,148" marker-end="url(#m9)"/><text x="486" y="140" class="t14 mu">broadcast</text>
+      <path class="ar" d="M480,230 L568,230" marker-end="url(#m9)"/><text x="486" y="222" class="t14 mu">element(16)</text>
+      <path class="ar" d="M790,152 L878,152" marker-end="url(#m9)"/><text x="800" y="144" class="t14 mu">result</text>
+      <path class="arc" d="M630,370 L630,262" marker-end="url(#m9c)"/><text x="638" y="320" class="t14 cu b">clear</text>
+      <path class="arc" d="M730,260 L730,368" marker-end="url(#m9c)"/><text x="738" y="320" class="t14 cu b">tick</text>
+      <path class="arc" d="M990,370 L990,262" marker-end="url(#m9c)"/><text x="998" y="320" class="t14 cu b">save, address</text>
+      <path class="arc" d="M580,436 L580,452 L205,452 L205,272" marker-end="url(#m9c)"/><text x="300" y="446" class="t14 cu b">load_select</text>
+      <path class="ar" d="M0,392 L568,392" marker-end="url(#m9)"/><text x="6" y="384" class="t16 b">phase</text>
+      <path class="ar" d="M0,418 L568,418" marker-end="url(#m9)"/><text x="6" y="410" class="t16 b">start</text>
+      <path class="ar" d="M1110,404 L1148,404" marker-end="url(#m9)"/><text x="1112" y="430" class="t16 b">done</text>
+      <g class="t14 b">
+        <circle cx="90" cy="368" r="14" fill="#c2662d"/><text x="90" y="373" text-anchor="middle" class="wh">1</text>
+        <circle cx="510" cy="108" r="14" fill="#c2662d"/><text x="510" y="113" text-anchor="middle" class="wh">2</text>
+        <circle cx="510" cy="300" r="14" fill="#c2662d"/><text x="510" y="305" text-anchor="middle" class="wh">3</text>
+        <circle cx="680" cy="82" r="14" fill="#c2662d"/><text x="680" y="87" text-anchor="middle" class="wh">4</text>
+        <circle cx="834" cy="180" r="14" fill="#c2662d"/><text x="834" y="185" text-anchor="middle" class="wh">5</text>
+        <circle cx="1130" cy="380" r="14" fill="#c2662d"/><text x="1130" y="385" text-anchor="middle" class="wh">6</text>
+      </g>
+    </svg>
+    <div class="steps">
+      <div class="step"><i>1</i>nhận phase + start</div>
+      <div class="step"><i>2</i>nạp bias, số chung</div>
+      <div class="step"><i>3</i>DMA chở số riêng</div>
+      <div class="step"><i>4</i>16 làn nhân-cộng</div>
+      <div class="step"><i>5</i>cất kết quả</div>
+      <div class="step"><i>6</i>báo done</div>
+    </div>
+  </div>
+  <div class="pg">9 / 19</div>
+</section>
+
+<!-- 10. Ping-pong -->
+<section class="slide">
+  <div class="hd"><h2>Ping-pong: 2 khay thay phiên, vừa ăn vừa dọn</h2>
+    <p class="sub">GEMM dùng khay này thì DMA nạp khay kia; tick = "xong khay, đổi khay"</p></div>
+  <div class="body">
+    <svg width="1152" height="300" viewBox="0 0 1152 300">
+      <text x="0" y="62" class="t20 b">Khay A</text>
+      <text x="0" y="132" class="t20 b">Khay B</text>
+      <text x="0" y="222" class="t20 b">GEMM</text>
+      <!-- u = 70px, x0 = 170 -->
+      <g>
+        <rect x="170" y="36" width="280" height="44" rx="6" fill="#f8e4d6" stroke="#c2662d"/><text x="310" y="64" text-anchor="middle" class="t16">DMA đang nạp</text>
+        <rect x="450" y="36" width="70" height="44" rx="6" fill="#1e5a46"/><text x="485" y="64" text-anchor="middle" class="t14 b wh">dùng</text>
+        <rect x="730" y="36" width="280" height="44" rx="6" fill="#f8e4d6" stroke="#c2662d"/><text x="870" y="64" text-anchor="middle" class="t16">DMA đang nạp</text>
+        <rect x="1010" y="36" width="70" height="44" rx="6" fill="#1e5a46"/><text x="1045" y="64" text-anchor="middle" class="t14 b wh">dùng</text>
+        <rect x="450" y="106" width="280" height="44" rx="6" fill="#f8e4d6" stroke="#c2662d"/><text x="590" y="134" text-anchor="middle" class="t16">DMA đang nạp</text>
+        <rect x="730" y="106" width="70" height="44" rx="6" fill="#1e5a46"/><text x="765" y="134" text-anchor="middle" class="t14 b wh">dùng</text>
+        <rect x="170" y="196" width="280" height="44" rx="6" fill="#e6ebe9"/><text x="310" y="224" text-anchor="middle" class="t16 mu">chờ khay đầy</text>
+        <rect x="450" y="196" width="70" height="44" rx="6" fill="#c2662d"/><text x="485" y="224" text-anchor="middle" class="t14 b wh">chạy</text>
+        <rect x="520" y="196" width="210" height="44" rx="6" fill="#e6ebe9"/><text x="625" y="224" text-anchor="middle" class="t16 mu">chờ</text>
+        <rect x="730" y="196" width="70" height="44" rx="6" fill="#c2662d"/><text x="765" y="224" text-anchor="middle" class="t14 b wh">chạy</text>
+        <rect x="800" y="196" width="210" height="44" rx="6" fill="#e6ebe9"/><text x="905" y="224" text-anchor="middle" class="t16 mu">chờ</text>
+        <rect x="1010" y="196" width="70" height="44" rx="6" fill="#c2662d"/><text x="1045" y="224" text-anchor="middle" class="t14 b wh">chạy</text>
+      </g>
+      <g class="t14 b cu">
+        <path d="M520,186 L520,250" stroke="#c2662d" stroke-width="2.5"/><text x="520" y="268" text-anchor="middle">tick</text>
+        <path d="M800,186 L800,250" stroke="#c2662d" stroke-width="2.5"/><text x="800" y="268" text-anchor="middle">tick</text>
+        <path d="M1080,186 L1080,250" stroke="#c2662d" stroke-width="2.5"/><text x="1080" y="268" text-anchor="middle">tick</text>
+      </g>
+      <path d="M170,290 L1100,290" stroke="#5a6862" stroke-width="1.5"/><text x="170" y="282" class="t14 mu">thời gian →</text>
+    </svg>
+    <div class="grid2">
+      <div class="card" style="font-size:18px; line-height:1.5;"><b>Spec giả sử:</b> DMA nạp kịp 1 khay (64 byte) trong lúc GEMM chạy 4 nhịp → GEMM không bao giờ phải chờ.</div>
+      <div class="card" style="font-size:18px; line-height:1.5; background:#f8e4d6; border-color:#f0c9ad;"><b>Thực tế:</b> ống 8 bit cần ≥ 64 clock để nạp 64 byte. Mình thêm <b>cờ valid</b>: khay chưa đầy thì GEMM tự đứng chờ → kết quả luôn đúng, nhanh hay chậm đều được.</div>
+    </div>
+  </div>
+  <div class="pg">10 / 19</div>
+</section>
+
+<!-- 11. Waveform 1 block -->
+<section class="slide">
+  <div class="hd"><h2>Một lượt chạy trông như thế nào (Phase 5)</h2>
+    <p class="sub">Hình dạng tín hiệu giống trong waveform ModelSim, vẽ lại cho dễ nhìn</p></div>
+  <div class="body">
+    <svg width="1152" height="420" viewBox="0 0 1152 420">
+      <g class="t14 b">
+        <rect x="150" y="6" width="176" height="32" rx="6" fill="#dcefe5"/><text x="238" y="27" text-anchor="middle">nạp số chung + bias</text>
+        <rect x="330" y="6" width="44" height="32" rx="6" fill="#f8e4d6"/><text x="352" y="27" text-anchor="middle" class="cu">clear</text>
+        <rect x="378" y="6" width="478" height="32" rx="6" fill="#c2662d"/><text x="617" y="27" text-anchor="middle" class="wh">nhân-cộng K = 84 nhịp (21 khay × 4)</text>
+        <rect x="860" y="6" width="176" height="32" rx="6" fill="#1e5a46"/><text x="948" y="27" text-anchor="middle" class="wh">save 10 kết quả</text>
+        <rect x="1040" y="6" width="100" height="32" rx="6" fill="#17241f"/><text x="1090" y="27" text-anchor="middle" class="wh">done</text>
+      </g>
+      <g class="t18 b mo">
+        <text x="0" y="90">start</text><text x="0" y="150">clear</text><text x="0" y="210">mac_en</text>
+        <text x="0" y="270">tick</text><text x="0" y="330">save</text><text x="0" y="390">done</text>
+      </g>
+      <g fill="none" stroke="#17241f" stroke-width="2.2">
+        <path d="M150,95 L160,95 L160,70 L180,70 L180,95 L1140,95"/>
+        <path d="M150,155 L332,155 L332,130 L352,130 L352,155 L1140,155"/>
+        <path d="M150,215 L388,215 L388,190 L396,190 L396,215 L408,215 L408,190 L416,190 L416,215 L428,215 L428,190 L436,190 L436,215 L448,215 L448,190 L456,190 L456,215
+                 L508,215 L508,190 L516,190 L516,215 L528,215 L528,190 L536,190 L536,215 L548,215 L548,190 L556,190 L556,215 L568,215 L568,190 L576,190 L576,215
+                 L628,215 L628,190 L636,190 L636,215 L648,215 L648,190 L656,190 L656,215 L668,215 L668,190 L676,190 L676,215 L688,215 L688,190 L696,190 L696,215
+                 L768,215 L768,190 L776,190 L776,215 L788,215 L788,190 L796,190 L796,215 L808,215 L808,190 L816,190 L816,215 L828,215 L828,190 L836,190 L836,215 L1140,215"/>
+        <path d="M150,275 L448,275 L448,250 L456,250 L456,275 L568,275 L568,250 L576,250 L576,275 L688,275 L688,250 L696,250 L696,275 L828,275 L828,250 L836,250 L836,275 L1140,275"/>
+        <path d="M150,335 L866,335 L866,310 L1030,310 L1030,335 L1140,335"/>
+        <path d="M150,395 L1044,395 L1044,370 L1140,370"/>
+      </g>
+      <g class="t14 mu"><text x="482" y="186" text-anchor="middle">chờ DMA</text><text x="602" y="186" text-anchor="middle">chờ DMA</text><text x="732" y="186" text-anchor="middle">…</text></g>
+      <text x="948" y="300" text-anchor="middle" class="t14 mu">mỗi clock ghi 1 số</text>
+      <text x="642" y="300" text-anchor="middle" class="t14 cu b">tick sau mỗi 4 nhịp → đổi khay</text>
+    </svg>
+    <div class="callout">Trong ModelSim đếm được đúng: <b>84 nhịp</b> nhân-cộng, <b>21 tick</b>, <b>10 lần save</b>, rồi <b>done</b>. Mỗi phase chỉ là lặp lại vòng này cho nhiều block.</div>
+  </div>
+  <div class="pg">11 / 19</div>
+</section>
+
+<!-- 12. Folder my_gemm -->
+<section class="slide">
+  <div class="hd"><h2>Trong folder my_gemm có gì</h2>
+    <p class="sub">Code mạch, máy kiểm tra, script chạy, và tài liệu</p></div>
+  <div class="body" style="flex-direction:row; gap:20px;">
+    <div class="card" style="flex:1.15; display:flex; flex-direction:column; gap:10px;">
+      <h3 class="mono" style="color:#c2662d;">rtl/ · mạch (10 file Verilog)</h3>
+      <div style="display:grid; grid-template-columns: auto 1fr; gap:6px 14px; font-size:17px; align-items:baseline;">
+        <span class="mono b">gemm_core.v</span><span>vỏ ngoài, nối các khối như Figure 1</span>
+        <span class="mono b">gemm_ctrl.v</span><span>bộ điều khiển: làm theo trình tự từng bước</span>
+        <span class="mono b">gemm_arb.v, gemm_ldmux.v</span><span>chia lượt dùng ống HyperRAM</span>
+        <span class="mono b">bias_buf.v</span><span>khay 16 bias</span>
+        <span class="mono b">bcast_buf.v</span><span>khay số chung</span>
+        <span class="mono b">elem_pingpong.v</span><span>2 khay số riêng (ping-pong)</span>
+        <span class="mono b">gemm_dma.v</span><span>người chở dữ liệu vào khay</span>
+        <span class="mono b">gemm_array.v</span><span>16 làn nhân-cộng</span>
+        <span class="mono b">out_buffer.v</span><span>chỗ cất kết quả</span>
+        <span class="mono b">gemm_defs.vh</span><span>hằng số, địa chỉ trong bộ nhớ</span>
+      </div>
+      <div class="note" style="margin-top:auto;">Slide không chiếu code: code đầy đủ nằm trong my_gemm/rtl (sẽ đưa lên GitHub), mỗi file có chú thích tiếng Việt ở đầu.</div>
+    </div>
+    <div style="flex:1; display:grid; grid-template-rows: repeat(4, 1fr); gap:14px;">
+      <div class="card"><h3 class="mono" style="color:#1e5a46; font-size:20px;">tb/ · máy kiểm tra</h3><div style="font-size:17px;">HyperRAM giả lập + tự tính đáp án để so</div></div>
+      <div class="card"><h3 class="mono" style="color:#1e5a46; font-size:20px;">sim/ · chạy mô phỏng</h3><div style="font-size:17px;">script ModelSim, log kết quả, waveform</div></div>
+      <div class="card"><h3 class="mono" style="color:#1e5a46; font-size:20px;">syn/ · thử lên chip</h3><div style="font-size:17px;">script tổng hợp bằng phần mềm Gowin</div></div>
+      <div class="card"><h3 class="mono" style="color:#1e5a46; font-size:20px;">docs/ · tài liệu</h3><div style="font-size:17px;">phân tích spec, giả định, báo cáo, slide này</div></div>
+    </div>
+  </div>
+  <div class="pg">12 / 19</div>
+</section>
+
+<!-- 13. Cach kiem tra -->
+<section class="slide">
+  <div class="hd"><h2>Làm sao biết mạch tính đúng?</h2>
+    <p class="sub">Cho mạch tính, máy tính tự tính đáp án riêng, rồi so từng con số</p></div>
+  <div class="body">
+    <svg width="1152" height="370" viewBox="0 0 1152 370">
+      <defs><marker id="m13" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#17241f"/></marker></defs>
+      <rect class="bx" x="0" y="120" width="200" height="130" rx="10"/>
+      <text x="100" y="152" text-anchor="middle" class="t18 b">Dữ liệu thử</text>
+      <text x="100" y="180" text-anchor="middle" class="t14 mu">ảnh MNIST thật</text>
+      <text x="100" y="202" text-anchor="middle" class="t14 mu">số ngẫu nhiên</text>
+      <text x="100" y="224" text-anchor="middle" class="t14 mu">toàn 0 / toàn 255</text>
+      <path class="ar" d="M200,160 L230,160 L230,80 L258,80" marker-end="url(#m13)"/>
+      <path class="ar" d="M200,210 L230,210 L230,300 L258,300" marker-end="url(#m13)"/>
+      <rect class="bxd" x="262" y="40" width="240" height="80" rx="10"/><text x="382" y="74" text-anchor="middle" class="t18 b wh">HyperRAM giả lập</text><text x="382" y="98" text-anchor="middle" class="t14 mo" style="fill:#dcefe5">hyperram_model.v</text>
+      <path class="ar" d="M502,80 L548,80" marker-end="url(#m13)"/>
+      <rect class="bxcu" x="552" y="40" width="260" height="80" rx="10"/><text x="682" y="74" text-anchor="middle" class="t18 b wh">Khối GEMM</text><text x="682" y="98" text-anchor="middle" class="t14 wh">(mạch mình code)</text>
+      <rect class="bxg" x="262" y="260" width="550" height="80" rx="10"/>
+      <text x="537" y="292" text-anchor="middle" class="t18 b">Testbench tự tính đáp án: W × P + B bằng vòng lặp</text>
+      <text x="537" y="318" text-anchor="middle" class="t14 mu">trọng số lấy từ file .mem riêng, không lấy từ chỗ mạch đọc</text>
+      <path class="ar" d="M812,80 L940,80 L940,138" marker-end="url(#m13)"/><text x="876" y="70" text-anchor="middle" class="t14 mu">kết quả mạch</text>
+      <path class="ar" d="M812,300 L940,300 L940,236" marker-end="url(#m13)"/><text x="876" y="290" text-anchor="middle" class="t14 mu">đáp án</text>
+      <rect class="bx" x="870" y="142" width="140" height="90" rx="10"/><text x="940" y="182" text-anchor="middle" class="t18 b">so từng</text><text x="940" y="206" text-anchor="middle" class="t18 b">con số</text>
+      <path class="ar" d="M1010,187 L1040,187" marker-end="url(#m13)"/>
+      <rect x="1044" y="140" width="104" height="40" rx="20" fill="#23824f"/><text x="1096" y="166" text-anchor="middle" class="t16 b wh">PASS ✓</text>
+      <rect x="1044" y="194" width="104" height="40" rx="20" fill="#c83c3c"/><text x="1096" y="220" text-anchor="middle" class="t16 b wh">FAIL ✗</text>
+    </svg>
+    <div class="grid2">
+      <div class="card" style="font-size:18px; line-height:1.5;"><b>Vì sao lấy trọng số từ file riêng?</b> Nếu mạch đọc nhầm địa chỉ, kết quả mạch sẽ khác đáp án → bắt được lỗi.</div>
+      <div class="card" style="font-size:18px; line-height:1.5;"><b>Kiểm thêm:</b> số lần clear / tick / save đúng công thức, done lên đúng 1 lần, không đọc bộ nhớ ra ngoài vùng.</div>
+    </div>
+  </div>
+  <div class="pg">13 / 19</div>
+</section>
+
+<!-- 14. Ket qua -->
+<section class="slide">
+  <div class="hd"><h2>Kết quả: mọi con số đều khớp đáp án</h2>
+    <p class="sub">Chạy đủ 5 phase với trọng số thật, ở 3 tốc độ bộ nhớ khác nhau</p></div>
+  <div class="body">
+    <div class="row">
+      <div class="tile" style="flex:1;"><div class="big">30/30</div><div class="lab">lượt test PASS</div></div>
+      <div class="tile" style="flex:1;"><div class="big">47 868</div><div class="lab">con số được so, sai 0</div></div>
+      <div class="tile" style="flex:1;"><div class="big">3</div><div class="lab">tốc độ HyperRAM: nhanh, chậm, rất chậm</div></div>
+    </div>
+    <svg width="1152" height="250" viewBox="0 0 1152 250">
+      <g class="t18">
+        <g transform="translate(0,10)"><rect width="216" height="150" rx="12" fill="#dcefe5"/><circle cx="108" cy="44" r="24" fill="#23824f"/><text x="108" y="53" text-anchor="middle" class="t26 b wh">✓</text><text x="108" y="98" text-anchor="middle" class="t20 b">Phase 5</text><text x="108" y="126" text-anchor="middle" class="t16 mu">10/10 logits</text></g>
+        <g transform="translate(234,10)"><rect width="216" height="150" rx="12" fill="#dcefe5"/><circle cx="108" cy="44" r="24" fill="#23824f"/><text x="108" y="53" text-anchor="middle" class="t26 b wh">✓</text><text x="108" y="98" text-anchor="middle" class="t20 b">Phase 4</text><text x="108" y="126" text-anchor="middle" class="t16 mu">84/84</text></g>
+        <g transform="translate(468,10)"><rect width="216" height="150" rx="12" fill="#dcefe5"/><circle cx="108" cy="44" r="24" fill="#23824f"/><text x="108" y="53" text-anchor="middle" class="t26 b wh">✓</text><text x="108" y="98" text-anchor="middle" class="t20 b">Phase 3</text><text x="108" y="126" text-anchor="middle" class="t16 mu">120/120</text></g>
+        <g transform="translate(702,10)"><rect width="216" height="150" rx="12" fill="#dcefe5"/><circle cx="108" cy="44" r="24" fill="#23824f"/><text x="108" y="53" text-anchor="middle" class="t26 b wh">✓</text><text x="108" y="98" text-anchor="middle" class="t20 b">Phase 2</text><text x="108" y="126" text-anchor="middle" class="t16 mu">1 600/1 600</text></g>
+        <g transform="translate(936,10)"><rect width="216" height="150" rx="12" fill="#dcefe5"/><circle cx="108" cy="44" r="24" fill="#23824f"/><text x="108" y="53" text-anchor="middle" class="t26 b wh">✓</text><text x="108" y="98" text-anchor="middle" class="t20 b">Phase 1</text><text x="108" y="126" text-anchor="middle" class="t16 mu">4 704/4 704</text></g>
+      </g>
+      <text x="0" y="200" class="t18">Phase 1 thử cả với <tspan class="b">ảnh MNIST thật</tspan> (số 7), ảnh ngẫu nhiên và ảnh toàn 255.</text>
+      <text x="0" y="230" class="t18">Thử thêm: bấm start giả lúc mạch đang bận → mạch bỏ qua, kết quả vẫn đúng.</text>
+    </svg>
+  </div>
+  <div class="pg">14 / 19</div>
+</section>
+
+<!-- 15. Mutation -->
+<section class="slide">
+  <div class="hd"><h2>Thử phá mạch để chắc bài test không "dễ dãi"</h2>
+    <p class="sub">Cố ý cài 4 lỗi vào code, xem test có phát hiện không</p></div>
+  <div class="body">
+    <svg width="1152" height="350" viewBox="0 0 1152 350">
+      <g class="t14 b mu" text-anchor="middle">
+        <text x="485" y="20">T1a</text><text x="550" y="20">T1b</text><text x="615" y="20">T1c</text><text x="680" y="20">T2</text><text x="745" y="20">T3</text>
+        <text x="810" y="20">T4</text><text x="875" y="20">T5a</text><text x="940" y="20">T5b</text><text x="1005" y="20">T5c</text><text x="1070" y="20">T6</text>
+      </g>
+      <g class="t14 mu" text-anchor="middle">
+        <text x="550" y="40">Phase 5</text><text x="680" y="40">P4</text><text x="745" y="40">P3</text><text x="810" y="40">P2</text><text x="940" y="40">Phase 1</text><text x="1070" y="40">P5</text>
+      </g>
+      <g class="t18">
+        <text x="0" y="88" class="b">Lỗi 1</text><text x="62" y="88">coi pixel là số có dấu</text>
+        <text x="0" y="158" class="b">Lỗi 2</text><text x="62" y="158">DMA đọc lệch địa chỉ trọng số</text>
+        <text x="0" y="228" class="b">Lỗi 3</text><text x="62" y="228">quên cất làn cuối mỗi block</text>
+        <text x="0" y="298" class="b">Lỗi 4</text><text x="62" y="298">Phase 2 lấy nhầm khay số chung</text>
+      </g>
+      <!-- o: x = 455 + 65*i, w = 60 ; hang y = 60,130,200,270 -->
+      <g>
+        <!-- loi 1: do o T5a T5b T5c -->
+        <rect x="455" y="60" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="520" y="60" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="585" y="60" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="650" y="60" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="715" y="60" width="60" height="48" rx="6" fill="#e6ebe9"/>
+        <rect x="780" y="60" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="845" y="60" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="910" y="60" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="975" y="60" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="1040" y="60" width="60" height="48" rx="6" fill="#e6ebe9"/>
+        <!-- loi 2: T1a T1b T2 T3 T6 -->
+        <rect x="455" y="130" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="520" y="130" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="585" y="130" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="650" y="130" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="715" y="130" width="60" height="48" rx="6" fill="#c83c3c"/>
+        <rect x="780" y="130" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="845" y="130" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="910" y="130" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="975" y="130" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="1040" y="130" width="60" height="48" rx="6" fill="#c83c3c"/>
+        <!-- loi 3: tat ca -->
+        <rect x="455" y="200" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="520" y="200" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="585" y="200" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="650" y="200" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="715" y="200" width="60" height="48" rx="6" fill="#c83c3c"/>
+        <rect x="780" y="200" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="845" y="200" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="910" y="200" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="975" y="200" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="1040" y="200" width="60" height="48" rx="6" fill="#c83c3c"/>
+        <!-- loi 4: T4 -->
+        <rect x="455" y="270" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="520" y="270" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="585" y="270" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="650" y="270" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="715" y="270" width="60" height="48" rx="6" fill="#e6ebe9"/>
+        <rect x="780" y="270" width="60" height="48" rx="6" fill="#c83c3c"/><rect x="845" y="270" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="910" y="270" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="975" y="270" width="60" height="48" rx="6" fill="#e6ebe9"/><rect x="1040" y="270" width="60" height="48" rx="6" fill="#e6ebe9"/>
+      </g>
+      <rect x="455" y="330" width="16" height="16" rx="3" fill="#c83c3c"/><text x="478" y="343" class="t14">test báo lỗi (bắt được)</text>
+      <rect x="680" y="330" width="16" height="16" rx="3" fill="#e6ebe9"/><text x="703" y="343" class="t14">test không liên quan, vẫn qua</text>
+    </svg>
+    <div class="callout">Lỗi nào cũng bị bắt, và <b>chỉ đúng những test liên quan mới báo đỏ</b>. Ví dụ lỗi 1 chỉ lộ ở Phase 1, vì chỉ ảnh gốc mới có pixel lớn hơn 127.</div>
+  </div>
+  <div class="pg">15 / 19</div>
+</section>
+
+<!-- 16. Len chip -->
+<section class="slide">
+  <div class="hd"><h2>Thử đưa lên chip Gowin: lần đầu tràn, sửa xong thì vừa</h2>
+    <p class="sub">Chip GW1NSR-4C có 4 608 ô logic</p></div>
+  <div class="body" style="flex-direction:row; gap:40px;">
+    <svg width="520" height="470" viewBox="0 0 520 470">
+      <!-- scale: 6000 -> 360px, y0 = 400 -->
+      <path d="M60,400 L500,400" stroke="#5a6862" stroke-width="1.5"/>
+      <rect x="110" y="75.5" width="130" height="324.5" rx="6" fill="#c83c3c"/>
+      <text x="175" y="62" text-anchor="middle" class="t22 b rd">5 408</text>
+      <rect x="310" y="198.7" width="130" height="201.3" rx="6" fill="#23824f"/>
+      <text x="375" y="186" text-anchor="middle" class="t22 b gr">3 355</text>
+      <path d="M60,123.5 L500,123.5" stroke="#c2662d" stroke-width="2.5" stroke-dasharray="9 6"/>
+      <text x="498" y="114" text-anchor="end" class="t16 b cu">giới hạn chip 4 608</text>
+      <text x="175" y="428" text-anchor="middle" class="t18 b">bản đầu</text>
+      <text x="375" y="428" text-anchor="middle" class="t18 b">bản đã sửa</text>
+      <text x="280" y="460" text-anchor="middle" class="t16 mu">số ô logic cần dùng</text>
+    </svg>
+    <div style="flex:1; display:flex; flex-direction:column; gap:18px; justify-content:center;">
+      <div class="card" style="font-size:18px; line-height:1.5;"><b>Vì sao tràn?</b> Phần mềm ghép "nhân + cộng" vào một loại khối đặc biệt mà chip chỉ có 8 cái. 8 làn còn lại phải dựng bằng logic thường → quá chỗ.</div>
+      <div class="card" style="font-size:18px; line-height:1.5; background:#dcefe5; border-color:#bfe0cd;"><b>Cách sửa:</b> nhân xong cất tạm, nhịp sau mới cộng. Khi đó cả 16 phép nhân dùng được 16 bộ nhân có sẵn trong chip.</div>
+      <svg width="560" height="140" viewBox="0 0 560 140">
+        <text x="0" y="22" class="t16 b">Logic</text><rect x="110" y="8" width="380" height="20" rx="4" fill="#e6ebe9"/><rect x="110" y="8" width="277" height="20" rx="4" fill="#1e5a46"/><text x="500" y="24" class="t16 mo">73%</text>
+        <text x="0" y="62" class="t16 b">Register</text><rect x="110" y="48" width="380" height="20" rx="4" fill="#e6ebe9"/><rect x="110" y="48" width="262" height="20" rx="4" fill="#1e5a46"/><text x="500" y="64" class="t16 mo">69%</text>
+        <text x="0" y="102" class="t16 b">BSRAM</text><rect x="110" y="88" width="380" height="20" rx="4" fill="#e6ebe9"/><rect x="110" y="88" width="342" height="20" rx="4" fill="#c2662d"/><text x="500" y="104" class="t16 mo">90%</text>
+        <text x="0" y="134" class="t14 mu">Tốc độ ước lượng 53.7 MHz (cần 50 MHz)</text>
+      </svg>
+    </div>
+  </div>
+  <div class="pg">16 / 19</div>
+</section>
+
+<!-- 17. Toc do -->
+<section class="slide">
+  <div class="hd"><h2>Tốc độ: khoảng 13 ms cho 1 ảnh</h2>
+    <p class="sub">Phần lớn thời gian là chờ dữ liệu, không phải tính</p></div>
+  <div class="body" style="flex-direction:row; gap:40px; align-items:center;">
+    <svg width="380" height="420" viewBox="0 0 380 420">
+      <circle cx="190" cy="180" r="120" fill="none" stroke="#e6ebe9" stroke-width="46"/>
+      <circle cx="190" cy="180" r="120" fill="none" stroke="#c2662d" stroke-width="46" stroke-dasharray="32.4 753.98" transform="rotate(-90 190 180)"/>
+      <text x="190" y="176" text-anchor="middle" class="b cu" style="font-size:52px">4.3%</text>
+      <text x="190" y="208" text-anchor="middle" class="t16 mu">thời gian thật sự</text>
+      <text x="190" y="228" text-anchor="middle" class="t16 mu">nhân-cộng</text>
+      <rect x="60" y="340" width="18" height="18" rx="3" fill="#c2662d"/><text x="86" y="355" class="t16">nhân-cộng</text>
+      <rect x="200" y="340" width="18" height="18" rx="3" fill="#e6ebe9"/><text x="226" y="355" class="t16">chờ HyperRAM</text>
+    </svg>
+    <div style="flex:1; display:flex; flex-direction:column; gap:16px;">
+      <svg width="700" height="250" viewBox="0 0 700 250">
+        <text x="0" y="18" class="t16 b mu">Thời gian mỗi phase (ms, ở 50 MHz)</text>
+        <g class="t18">
+          <text x="0" y="62" class="b">Phase 1</text><rect x="110" y="44" width="236" height="26" rx="4" fill="#1e5a46"/><text x="356" y="64" class="mo">3.28</text>
+          <text x="0" y="104" class="b">Phase 2</text><rect x="110" y="86" width="500" height="26" rx="4" fill="#c2662d"/><text x="620" y="106" class="mo">6.95</text>
+          <text x="0" y="146" class="b">Phase 3</text><rect x="110" y="128" width="175" height="26" rx="4" fill="#1e5a46"/><text x="295" y="148" class="mo">2.43</text>
+          <text x="0" y="188" class="b">Phase 4</text><rect x="110" y="170" width="37" height="26" rx="4" fill="#1e5a46"/><text x="157" y="190" class="mo">0.52</text>
+          <text x="0" y="230" class="b">Phase 5</text><rect x="110" y="212" width="4" height="26" rx="2" fill="#1e5a46"/><text x="124" y="232" class="mo">0.05</text>
+        </g>
+      </svg>
+      <div class="callout">Nút cổ chai là <b>ống 8 bit tới HyperRAM</b>. Phase 2 lâu nhất vì phải đọc lại dữ liệu ảnh 16 lần (mỗi bộ lọc 1 lần).</div>
+    </div>
+  </div>
+  <div class="pg">17 / 19</div>
+</section>
+
+<!-- 18. Cau hoi -->
+<section class="slide">
+  <div class="hd"><h2>Những chỗ cần nhóm trưởng chốt</h2>
+    <p class="sub">Spec chưa rõ, mình đã chọn tạm một cách hợp lý</p></div>
+  <div class="body">
+    <div class="grid2" style="flex:1;">
+      <div class="card" style="display:flex; gap:16px;"><div style="flex:0 0 46px; height:46px; border-radius:50%; background:#c2662d; color:#fff; font-size:26px; font-weight:700; display:flex; align-items:center; justify-content:center;">?</div>
+        <div style="font-size:18px; line-height:1.5;"><div style="font-size:21px; font-weight:700; margin-bottom:6px;">Khay số riêng to bao nhiêu?</div>detail.md ghi 2 khay × 4 nhịp; hình Figure 1 ghi "K×16".<br><span style="color:#1e5a46; font-weight:600;">Đang làm theo detail.md.</span><div style="margin-top:10px; color:#5a6862; font-size:16px;">Nếu đổi: sửa elem_pingpong, gemm_dma và chỗ đếm tick (gemm_array, gemm_ctrl).</div></div></div>
+      <div class="card" style="display:flex; gap:16px;"><div style="flex:0 0 46px; height:46px; border-radius:50%; background:#c2662d; color:#fff; font-size:26px; font-weight:700; display:flex; align-items:center; justify-content:center;">?</div>
+        <div style="font-size:18px; line-height:1.5;"><div style="font-size:21px; font-weight:700; margin-bottom:6px;">DMA không kịp như giả thuyết</div>Ống 8 bit không nạp nổi 64 byte trong 4 nhịp.<br><span style="color:#1e5a46; font-weight:600;">Đang cho GEMM tự chờ. Có cần ống rộng hơn?</span><div style="margin-top:10px; color:#5a6862; font-size:16px;">Nếu ống rộng hơn: chỉ sửa phần chở dữ liệu, phần tính giữ nguyên.</div></div></div>
+      <div class="card" style="display:flex; gap:16px;"><div style="flex:0 0 46px; height:46px; border-radius:50%; background:#c2662d; color:#fff; font-size:26px; font-weight:700; display:flex; align-items:center; justify-content:center;">?</div>
+        <div style="font-size:18px; line-height:1.5;"><div style="font-size:21px; font-weight:700; margin-bottom:6px;">Bias giữ 16 số hay cả vector?</div>Figure 1 vẽ 16 bias; Bảng 1 cấp chỗ cho cả vector (tới 120 số).<br><span style="color:#1e5a46; font-weight:600;">Đang theo Figure 1, nạp lại mỗi block.</span><div style="margin-top:10px; color:#5a6862; font-size:16px;">Nếu đổi: sửa bias_buf.v và chỗ nạp bias trong gemm_ctrl.v.</div></div></div>
+      <div class="card" style="display:flex; gap:16px;"><div style="flex:0 0 46px; height:46px; border-radius:50%; background:#c2662d; color:#fff; font-size:26px; font-weight:700; display:flex; align-items:center; justify-content:center;">?</div>
+        <div style="font-size:18px; line-height:1.5;"><div style="font-size:21px; font-weight:700; margin-bottom:6px;">Ai duỗi ảnh, ảnh nằm đâu?</div>Spec chưa nói ai làm im2col và đặt dữ liệu ở địa chỉ nào.<br><span style="color:#1e5a46; font-weight:600;">Đang giả sử khối khác làm sẵn, đặt từ 0x10000.</span><div style="margin-top:10px; color:#5a6862; font-size:16px;">Nếu địa chỉ khác: chỉ sửa 1 dòng trong gemm_defs.vh.</div></div></div>
+    </div>
+    <div class="note">Đủ 18 giả định, mỗi cái kèm lý do và nguồn, nằm trong my_gemm/docs/BAO_CAO_GEMM.md.</div>
+  </div>
+  <div class="pg">18 / 19</div>
+</section>
+
+<!-- 19. Tom tat -->
+<section class="slide dark" style="justify-content:center; gap:34px;">
+  <div style="font-size:42px; font-weight:700;">Tóm lại</div>
+  <div class="row" style="gap:22px;">
+    <div style="flex:1; background:#164a3a; border-radius:14px; padding:24px;"><div style="font-size:18px; color:#9fc7b5; font-weight:600;">ĐÃ CODE</div><div style="font-size:24px; font-weight:700; margin-top:8px; line-height:1.35;">Khối GEMM 10 module, đúng sơ đồ Figure 1</div></div>
+    <div style="flex:1; background:#164a3a; border-radius:14px; padding:24px;"><div style="font-size:18px; color:#9fc7b5; font-weight:600;">ĐÃ KIỂM</div><div style="font-size:24px; font-weight:700; margin-top:8px; line-height:1.35;">47 868 con số đúng hết; cài 4 lỗi, bắt cả 4</div></div>
+    <div style="flex:1; background:#164a3a; border-radius:14px; padding:24px;"><div style="font-size:18px; color:#9fc7b5; font-weight:600;">VỪA CHIP</div><div style="font-size:24px; font-weight:700; margin-top:8px; line-height:1.35;">73% logic, khoảng 13 ms mỗi ảnh</div></div>
+  </div>
+  <div style="font-size:20px; color:#dcefe5; line-height:1.6;">
+    <b style="color:#f2a46f;">Tiếp theo:</b> chốt các giả định → ghép bộ điều khiển HyperRAM thật → chạy cả mạng, so với đáp án phần mềm → nạp lên board
+  </div>
+  <div class="pg">19 / 19</div>
+</section>
+
+</body>
+</html>

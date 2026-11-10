@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="gemm_core" Lut="371" T_Register="2431(0)" T_Alu="725(0)" T_Lut="2630(371)" T_MULT9X9="16(0)" T_Bsram="9(0)">
+ <SubModule name="u_ctrl" Register="215" Alu="89" Lut="474" T_Register="215(215)" T_Alu="89(89)" T_Lut="474(474)"/>
+ <SubModule name="u_arb" Register="20" Lut="131" T_Register="20(20)" T_Lut="131(131)"/>
+ <SubModule name="u_mux" Lut="3" T_Lut="3(3)"/>
+ <SubModule name="u_bias" Register="518" Lut="98" T_Register="518(518)" T_Lut="98(98)"/>
+ <SubModule name="u_bcast" Bsram="1" T_Bsram="1(1)"/>
+ <SubModule name="u_dma" Register="118" Alu="124" Lut="296" T_Register="118(118)" T_Alu="124(124)" T_Lut="296(296)"/>
+ <SubModule name="u_elem" Register="1029" Lut="687" T_Register="1029(1029)" T_Lut="687(687)"/>
+ <SubModule name="u_array" Register="529" Alu="512" Lut="557" MULT9X9="16" T_Register="529(529)" T_Alu="512(512)" T_Lut="557(557)" T_MULT9X9="16(16)"/>
+ <SubModule name="u_out" Register="2" Lut="13" Bsram="8" T_Register="2(2)" T_Lut="13(13)" T_Bsram="8(8)"/>
+</Module>
