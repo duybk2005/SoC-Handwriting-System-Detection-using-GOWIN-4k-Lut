@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="syn_wrap_gemm" Register="109" Lut="20" T_Register="210(109)" T_Alu="16(0)" T_Lut="219(20)" T_MULT36X36="1(0)" T_MULTADDALU18X18="1(0)">
+ <SubModule name="u_dut" Register="69" Alu="16" Lut="119" T_Register="101(69)" T_Alu="16(16)" T_Lut="199(119)" T_MULT36X36="1(0)" T_MULTADDALU18X18="1(0)">
+  <SubModule name="u_mac" Register="32" Lut="33" MULTADDALU18X18="1" T_Register="32(32)" T_Lut="33(33)" T_MULTADDALU18X18="1(1)"/>
+  <SubModule name="u_rq" Lut="47" MULT36X36="1" T_Lut="47(47)" T_MULT36X36="1(1)"/>
+ </SubModule>
+</Module>

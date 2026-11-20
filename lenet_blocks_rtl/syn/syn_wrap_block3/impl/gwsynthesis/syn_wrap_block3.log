@@ -1,0 +1,45 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\mac.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\relu_rq.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\block3_top.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\syn\syn_wrap.v'
+Compiling module 'syn_wrap_block3'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\syn\syn_wrap.v":45)
+Compiling module 'block3_top'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\block3_top.v":21)
+Extracting RAM for identifier 'h3_ram'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\block3_top.v":72)
+Extracting RAM for identifier 'h4_ram'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\block3_top.v":73)
+Compiling module 'gemm_engine(M=120,K=400,N=1,X_UNSIGNED=0,MULT=23'd1981865)'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v":30)
+Compiling module 'mac'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\mac.v":16)
+Compiling module 'relu_rq(MULT=23'b00111100011110110101001)'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\relu_rq.v":17)
+WARN  (EX3791) : Expression size 16 truncated to fit in target size 15("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v":135)
+WARN  (EX3791) : Expression size 17 truncated to fit in target size 16("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v":151)
+Compiling module 'gemm_engine(M=84,K=120,N=1,X_UNSIGNED=0,MULT=23'd3025526)'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v":30)
+Compiling module 'relu_rq(MULT=23'b01011100010101001110110)'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\relu_rq.v":17)
+WARN  (EX3791) : Expression size 16 truncated to fit in target size 15("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v":135)
+WARN  (EX3791) : Expression size 17 truncated to fit in target size 16("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v":151)
+Compiling module 'gemm_engine(M=10,K=84,N=1,X_UNSIGNED=0,DO_RQ=0,MULT=23'd0)'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v":30)
+Compiling module 'relu_rq(MULT=23'b00000000000000000000000)'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\relu_rq.v":17)
+WARN  (EX3791) : Expression size 16 truncated to fit in target size 15("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v":135)
+WARN  (EX3791) : Expression size 17 truncated to fit in target size 16("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v":151)
+NOTE  (EX0101) : Current top module is "syn_wrap_block3"
+[5%] Running netlist conversion ...
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+WARN  (NL0002) : The module "relu_rq" instantiated to "u_rq" is swept in optimizing("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v":90)
+[95%] Generate netlist file "D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\syn\syn_wrap_block3\impl\gwsynthesis\syn_wrap_block3.vg" completed
+[100%] Generate report file "D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\syn\syn_wrap_block3\impl\gwsynthesis\syn_wrap_block3_syn.rpt.html" completed
+GowinSynthesis finish

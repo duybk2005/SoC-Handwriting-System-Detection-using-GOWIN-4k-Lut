@@ -1,0 +1,11 @@
+# File do ModelSim tu sinh khi chay mo phong
+work/
+transcript
+*.wlf
+*.vstf
+modelsim.ini
+# File bitstream lon cua Gowin (bao cao .html/.txt van giu de lam bang chung)
+*.fs
+*.bin
+*.binx
+*.db

@@ -1,0 +1,33 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\mac.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\relu_rq.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\block3_top.v'
+Analyzing Verilog file 'D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\syn\syn_wrap.v'
+Compiling module 'syn_wrap_gemm'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\syn\syn_wrap.v":18)
+Compiling module 'gemm_engine'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v":30)
+Compiling module 'mac'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\mac.v":16)
+Compiling module 'relu_rq(MULT=23'b00110010111100110010010)'("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\relu_rq.v":17)
+WARN  (EX3791) : Expression size 16 truncated to fit in target size 15("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v":135)
+WARN  (EX3791) : Expression size 17 truncated to fit in target size 16("D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\rtl\gemm_engine.v":151)
+NOTE  (EX0101) : Current top module is "syn_wrap_gemm"
+[5%] Running netlist conversion ...
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+[95%] Generate netlist file "D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\syn\syn_wrap_gemm\impl\gwsynthesis\syn_wrap_gemm.vg" completed
+[100%] Generate report file "D:\hcmut\HK261\CDTKVM\full_test_git\lenet_blocks_rtl\syn\syn_wrap_gemm\impl\gwsynthesis\syn_wrap_gemm_syn.rpt.html" completed
+GowinSynthesis finish
